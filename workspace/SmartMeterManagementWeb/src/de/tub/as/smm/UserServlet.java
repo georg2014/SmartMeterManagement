@@ -15,7 +15,6 @@ import de.tub.as.smm.models.User;
 /**
  * Servlet implementation class UserServlet
  */
-
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,8 +24,7 @@ public class UserServlet extends HttpServlet {
     UserDao userDao;
  
     @Override
-    protected void doGet(
-        HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
  
         // Display the list of guests:
