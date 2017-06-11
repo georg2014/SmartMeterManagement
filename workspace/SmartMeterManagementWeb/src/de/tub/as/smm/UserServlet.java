@@ -32,6 +32,9 @@ public class UserServlet extends HttpServlet {
         // Display the list of guests:
         request.setAttribute("user", userDao.getAllUsers());
         request.getRequestDispatcher("/user.jsp").forward(request, response);
+        /**
+         * the first answer - will response the first page you will see as user
+         */
     }
  
     @Override
