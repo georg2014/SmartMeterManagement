@@ -13,14 +13,13 @@
 </head>
 
 <body>
-	<form method="POST" action="user">
+	<form method="GET" action="user"><!-- change PST to GET -->
 		Name: <input type="text" name="name" /> <input type="submit"
 			value="Add" />
 	</form>
-
 	<hr>
 	<ol>
-		<%
+		<%	
 			@SuppressWarnings("unchecked")
 			List<User> users = (List<User>) request.getAttribute("user");
 			if (users != null) {
@@ -33,6 +32,5 @@
 		%>
 	</ol>
 	<hr>
-
 </body>
 </html>
