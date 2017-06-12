@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<form method="GET" action="user"><!-- change PST to GET -->
+	<form method="POST" action="user">
 		Name: <input type="text" name="name" /> <input type="submit"
 			value="Add" />
 	</form>
@@ -24,10 +24,10 @@
 			List<User> users = (List<User>) request.getAttribute("user");
 			if (users != null) {
 				for (User user : users) {
-		%>
-		<li><%=user%></li>
-		<%
-			}
+					%>
+					<li><%=user%></li>
+					<%
+				}
 			}
 		%>
 	</ol>

@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="POST" action="index"><!-- change PST to GET -->
-		Name: <input type="text" name="name" /> <input type="submit"
-			value="Add" />
-	</form>
+	<jsp:include page="<%= "user.jsp" %>" />
 </body>
 </html>
