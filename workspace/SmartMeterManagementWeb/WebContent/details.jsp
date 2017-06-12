@@ -12,8 +12,8 @@
 
 	<!-- Navigation view  upper right hand-->
 	<div>
-			<a href="index.html">Übersicht</a>
-			<a href="">> Detailansicht</a>
+			<a href="index.html">Overview</a>
+			<a href="">> Detail View</a>
 	</div>
 
 		<!-- Box for the picture of the Smart Meters -->

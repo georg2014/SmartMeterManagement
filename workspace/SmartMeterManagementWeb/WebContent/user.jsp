@@ -32,5 +32,8 @@
 		%>
 	</ol>
 	<hr>
+	<form method="POST" action="home">
+		 <input type="submit" value="Go to the home screen" />
+	</form>
 </body>
 </html>
