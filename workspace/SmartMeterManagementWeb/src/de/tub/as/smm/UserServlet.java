@@ -28,10 +28,11 @@ public class UserServlet extends HttpServlet {
     protected void doGet(
         HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-        // Display the list of guests:
+    	
+    	// Display the list of guests:
         request.setAttribute("user", userDao.getAllUsers());
         request.getRequestDispatcher("/user.jsp").forward(request, response);
+ 		
     }
  
     @Override
