@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="GET" action="index"><!-- change PST to GET -->
+	<form method="POST" action="index"><!-- change PST to GET -->
 		Name: <input type="text" name="name" /> <input type="submit"
 			value="Add" />
 	</form>

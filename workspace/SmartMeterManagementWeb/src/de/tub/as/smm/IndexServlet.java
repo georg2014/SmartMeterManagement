@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class IndexServlet
  */
-@WebServlet("/IndexServlet")
+@WebServlet("/index")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,14 +32,14 @@ public class IndexServlet extends HttpServlet {
 		
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>test index</title>");
-		out.println("</head>");
-		out.println("<body>");
+//		out.println("<html>");
+//		out.println("<head>");
+//		out.println("<title>test index</title>");
+//		out.println("</head>");
+//		out.println("<body>");
 		out.println(name);
-		out.println("</body>");
-		out.println("</html>");
+//		out.println("</body>");
+//		out.println("</html>");
 	}
 
 	/**
