@@ -13,7 +13,7 @@
 		<table class=tableDefault>
 			<tr><th>Navigation</th></tr>
 			<tr>
-				<td><form method="POST" action="home"><input type="button" value="home"
+				<td><form method="POST" action="home"><input type="submit" value="home"
 					style="background-color: darkblue;
 		   			color: white;
 		   			padding: 15px 32px;
@@ -49,7 +49,7 @@
 				<%="here should be all log from all users for this smart meter" %>
 			</tr>
 			<tr>
-				<td><form method="POST" action="add"><input type="button" value="add"
+				<td><form method="POST" action="add"><input type="submit" value="add"
 					style="background-color: darkblue;
 		   			color: white;
 		   			padding: 15px 32px;

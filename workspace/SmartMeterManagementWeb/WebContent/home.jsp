@@ -13,7 +13,7 @@
 	<table style="color:grey">
 		<tr><th>Navigation</th></tr>
 		<tr>
-			<td><form method="POST" action="home"><input type="button" value="home"
+			<td><form method="POST" action="home"><input type="submit" value="home"
 			style="background-color: darkblue;
    			color: white;
    			padding: 15px 32px;
@@ -26,7 +26,7 @@
 					<p><%="here comes the id variable"%></p>
 					<img src=<%="here comes the img src variable"%> alt="Smart Meter" width="30%">
 				</td>
-			<td><form method="POST" action="details"><input class="button" type="button" value="details"/></form></td>			
+			<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
 		<%//close %>
 		</tr>
 	</table>
