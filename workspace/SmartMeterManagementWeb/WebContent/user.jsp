@@ -14,8 +14,7 @@
 
 <body>
 	<form method="POST" action="user">
-		Name: <input type="text" name="name" /> <input type="submit"
-			value="Add" />
+		Name: 	<input type="text" name="name" /> <input type="submit"value="Add" />
 	</form>
 	<hr>
 	<ol>
@@ -33,7 +32,8 @@
 	</ol>
 	<hr>
 	<form method="POST" action="home">
-		 <input type="submit" value="Go to the home screen" />
+		 <input type="submit" value="Go to the home screen"
+		 	style="background-color: darkblue;color: white;padding: 15px 32px;margin: 4px 2px;" />
 	</form>
 </body>
 </html>
