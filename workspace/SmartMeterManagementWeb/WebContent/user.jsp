@@ -9,10 +9,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Management</title>
+<title>SMM</title>
 </head>
 
 <body>
+	<h1> Smart Meters Management </h1>
+	<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 	<form method="POST" action="user">
 		Name: 	<input type="text" name="name" /> <input type="submit"value="Add" />
 	</form>

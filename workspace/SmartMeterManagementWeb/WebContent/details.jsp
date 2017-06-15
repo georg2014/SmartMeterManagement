@@ -7,49 +7,54 @@
 <title>Smart Meter - details</title>
 </head>
 <body>
-
-	<h1>Smart Meter 1</h1>
-
-	<!-- Navigation view  upper right hand-->
-	<div>
-			<a href="index.html">Overview</a>
-			<a href="">> Detail View</a>
-	</div>
-
-		<!-- Box for the picture of the Smart Meters -->
-		<div class="imageBox">
-			<img src="Bilder von Smart Metern\Smart Meter 1.jpg" alt="" width="300" height="500">
-			<!-- Text which should be shown in the field of the Smart Meter-->
-			<p id="imgtxt1">
-				Voltage: <span id="spannung">  </span> <br />
-				Current: <span id="stromstärke"> </span>
-			</p>
-		</div>
-		<!-- ID and max Current -->
-		<p>
-			ID: <span id="gk">RV32165245</span>
-		</p>
-		<p>
-			Max. Current: <span id= "maxA">89</span>A
-		</p>
-
-	<!-- Formula that takes two input values and start with the submit button a script to add the data into a table-->
-	<form id="ablesen" onsubmit="submiter(); return false">
-		Count: <input type="text" id="data">
-		<input type="submit" value="Submit">
-	</form>
-
-	<!-- Table which is filled with values-->
-	<table id="ablesungen">
-		<tr>
-			<th>User</th>
-			<th>Count</th>
-			<th>Date</th>
-		</tr>
-	</table>
-
-	<!-- footer with usefull infos -->
-	<p>Anwendungssysteme 2. Task made by Leon Winkelmann, Jakob Feldmann, Jonas Schicke and Georg Stahn (Gruppe E)</p>
-
+	<h1> Smart Meters </h1>
+	<h2 class="active"> Anwendungssysteme Task 2 SS 2017</h2>
+	<!-- table where you can see the Smart Meter and go home -->
+		<table class=tableDefault>
+			<tr><th>Navigation</th></tr>
+			<tr>
+				<td><form method="POST" action="home"><input type="button" value="home"
+					style="background-color: darkblue;
+		   			color: white;
+		   			padding: 15px 32px;
+					margin: 4px 2px;"/></form></td>
+			</tr>
+			<!-- display: id volt amper and strain -->
+			<tr>
+				<td>id</td><td>volt</td><td>current</td><td>max strain</td>
+			</tr>
+			<tr>
+				<td><%="AA12345678"%></td><td><%="here comes the voltage" %></td>
+				<td><%="here comes the current" %></td><td><%="here comes the max strain" %></td>
+			</tr>
+			<!-- display: img -->
+			<tr>
+				<td></td>
+					<td>
+						<p>Smart Meter</p>
+						<%="gere comes the image" %>
+					</td>
+			</tr>
+			<!-- display: option to typ in kWh -->
+			<tr>
+				<!-- TODO how to work with the inout??? -->
+				<td>kWh: </td><td><input type="text"></td>
+			</tr>
+			<!-- display: typed in data -->
+			<tr>
+				<td>name</td><td>date</td><td>kWh</td><td></td>
+			</tr>
+			<tr>
+				<!-- output -->
+				<%="here should be all log from all users for this smart meter" %>
+			</tr>
+			<tr>
+				<td><form method="POST" action="add"><input type="button" value="add"
+					style="background-color: darkblue;
+		   			color: white;
+		   			padding: 15px 32px;
+					margin: 4px 2px;"/></form></td>
+			</tr>
+		</table>
 </body>
 </html>
