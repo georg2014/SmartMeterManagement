@@ -42,7 +42,8 @@ public class UserServlet extends HttpServlet {
  
         // Handle a new guest:
         String name = request.getParameter("name");
-        if (name != null)
+        if (name != null && name != "" && name.chars().allMatch(Character::isLetter))
+        	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
             userDao.persist(new User(name));
  
         // Display the list of guests:

@@ -7,9 +7,20 @@
 <title>Smart Meter - details</title>
 </head>
 <body>
-	<h1> Smart Meters </h1>
-	<h2 class="active"> Anwendungssysteme Task 2 SS 2017</h2>
-	<!-- table where you can see the Smart Meter and go home -->
+	<div style="
+		  position: relative;
+		  z-index: 1;
+		  position: absolute;
+		  top: 0; 
+		  left: 0;
+		  width: 100%; 
+		  height: 100%;
+		  z-index: -1;
+		  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
+		">
+		<h1> Smart Meters </h1>
+		<h2 class="active"> Anwendungssysteme Task 2 SS 2017</h2>
+		<!-- table where you can see the Smart Meter and go home -->
 		<table class=tableDefault>
 			<tr><th>Navigation</th></tr>
 			<tr>
@@ -24,15 +35,16 @@
 				<td>id</td><td>volt</td><td>current</td><td>max strain</td>
 			</tr>
 			<tr>
-				<td><%="AA12345678"%></td><td><%="here comes the voltage" %></td>
-				<td><%="here comes the current" %></td><td><%="here comes the max strain" %></td>
+				<td><%="AA12345678"%></td><td><%="100" %></td>
+				<td><%="100" %></td><td><%="100" %></td>
 			</tr>
 			<!-- display: img -->
 			<tr>
 				<td></td>
 					<td>
 						<p>Smart Meter</p>
-						<%="gere comes the image" %>
+						<!-- TODO -->
+						<img src="sm1.jpg">
 					</td>
 			</tr>
 			<!-- display: option to typ in kWh -->
@@ -46,15 +58,20 @@
 			</tr>
 			<tr>
 				<!-- output -->
-				<%="here should be all log from all users for this smart meter" %>
+				<!-- output next -->
+				<!-- TODO -->
+				<td>tom</td>
+				<td>15.06.2017</td>
+				<td>645kWh</td>
 			</tr>
 			<tr>
-				<td><form method="POST" action="add"><input type="submit" value="add"
+				<td><form method="POST" action="addData"><input type="submit" value="add"
 					style="background-color: darkblue;
 		   			color: white;
 		   			padding: 15px 32px;
 					margin: 4px 2px;"/></form></td>
 			</tr>
 		</table>
+	</div>
 </body>
 </html>

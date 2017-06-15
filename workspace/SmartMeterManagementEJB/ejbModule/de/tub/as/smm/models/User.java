@@ -31,4 +31,8 @@ public class User implements Serializable {
     public String toString() {
         return name + " (signed on " + signingDate + ")";
     }
+    
+    public String getName(){
+    	return name;
+    }
 }
