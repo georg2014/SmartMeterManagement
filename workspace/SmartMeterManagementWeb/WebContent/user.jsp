@@ -13,22 +13,12 @@
 </head>
 
 <body>
-	<div style="
-	  position: relative;
-	  z-index: 1;
-	  position: absolute;
-	  top: 0; 
-	  left: 0;
-	  width: 100%; 
-	  height: 100%;
-	  z-index: -1;
-	  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	">
 		<h1> Smart Meters Management </h1>
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<%//here is some weard going in in eclipse but it caused no damape yet
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) request.getAttribute("user");
+		//this is how to get information from the ejb
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
 			<div>You are Logged In as: <%=users.get(users.size()-1).getName() %></div>
@@ -42,7 +32,7 @@
 		</form>
 		<hr>
 			<ol>
-				<%	
+				<%	//this is how to write java code in html
 				if (users != null) {
 					for (User user : users) {
 						%>
@@ -64,6 +54,8 @@
 			<%
 		}
 		%>
-	</div>
+	<!-- get some paramter from .java - not tested -->
+	<p>${date.name}</p>
+	<!-- this is unfinished -->
 </body>
 </html>

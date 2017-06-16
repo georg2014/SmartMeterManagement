@@ -21,7 +21,7 @@ HOW TO USE JSP AND SERVLETS
 
 /**begin***********Servlet-general*****/
 	Servlet are there to comunicate with the broser via http request and response
-	//structur of a servlet
+	//structur of a servlet with dao and ejb integration
 		package de.tub.as.smm;
 		
 		import java.io.IOException;
@@ -51,9 +51,7 @@ HOW TO USE JSP AND SERVLETS
 		        HttpServletRequest request, HttpServletResponse response)
 		            throws ServletException, IOException {
 		    	
-		    	// Display the list of guests:
-		        request.setAttribute("user", userDao.getAllUsers());
-		        request.getRequestDispatcher("/user.jsp").forward(request, response);
+		    	// manage requests and response
 		 		
 		    }
 		 
@@ -62,18 +60,17 @@ HOW TO USE JSP AND SERVLETS
 		        HttpServletRequest request, HttpServletResponse response)
 		            throws ServletException, IOException {
 		 
-		        // Handle a new guest:
-		        String name = request.getParameter("name");
-		        if (name != null && name != "" && name.chars().allMatch(Character::isLetter))
-		        	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
-		            userDao.persist(new User(name));
-		 
-		        // Display the list of guests:
-		        doGet(request, response);
+		        // manage requests and response
+		        
 		    }
 		}
 
-	
+see comments in:
+show.jsp
+ShowServlet.java
+UserServlet.java
+user.jsp
+
 	
 /**end***********Servlet-general*****/
 
