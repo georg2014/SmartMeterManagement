@@ -4,34 +4,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Smart Meter - details</title>
+<title>SMM</title>
+<link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
 </head>
+<style>
+	body, html {
+	    height: 100%;
+	    margin: 0;
+	}
+	
+	.bg {
+	    /* The image used */
+	    background-image: url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
+	
+	    /* Full height and width */
+	    height: 100%;
+        width: 100%;
+	
+	    /* Center and scale the image nicely */
+	    background-position: center;
+	    background-repeat: repeat;
+	    background-size: cover;
+        
+        /*make the position absolut*/
+        position: absolute;
+	    top: 0; 
+	    left: 0;
+	    
+        /*make it transparent*/
+	    opacity: 0.5;
+	}
+    
+    .fg{
+    	/*make the position absolut before the bg and no opacity*/
+    	position: absolute;
+	    top: 0; 
+	    left: 0;
+    }
+    
+    .button{
+    	background-color: darkblue;
+    	color: white;
+    	padding: 15px 32px;
+    	margin: 4px 2px;
+    }
+</style>
+
 <body>
-	<div style="
-	  position: absolute;
-	  top: 0; 
-	  left: 0;
-	  width: 100%; 
-	  height: 100%;
-	  z-index: -1;
-	  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	  opacity: 0.1;
-	"></div>
-	<div style="
-	  position: absolute;
-	  top: 0; 
-	  left: 0;">
+	<div class="bg"></div>
+	<div class="fg">
 		<h1> Smart Meters </h1>
 		<h2 class="active"> Anwendungssysteme Task 2 SS 2017</h2>
 		<!-- table where you can see the Smart Meter and go home -->
 		<table class=tableDefault>
 			<tr><th>Navigation</th></tr>
 			<tr>
-				<td><form method="POST" action="home"><input type="submit" value="home"
-					style="background-color: darkblue;
-		   			color: white;
-		   			padding: 15px 32px;
-					margin: 4px 2px;"/></form></td>
+				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
@@ -68,11 +96,7 @@
 				<td>645kWh</td>
 			</tr>
 			<tr>
-				<td><form method="POST" action="addData"><input type="submit" value="add"
-					style="background-color: darkblue;
-		   			color: white;
-		   			padding: 15px 32px;
-					margin: 4px 2px;"/></form></td>
+				<td><form method="POST" action="addData"><input type="submit" value="add"class="button"/></form></td>
 			</tr>
 		</table>
 	</div>

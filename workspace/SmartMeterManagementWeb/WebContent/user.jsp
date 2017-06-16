@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SMM</title>
+<link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
 </head>
-
 <style>
 	body, html {
 	    height: 100%;
@@ -20,33 +20,44 @@
 	
 	.bg {
 	    /* The image used */
-	    background-image: url("img_girl.jpg");
+	    background-image: url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
 	
-	    /* Full height */
-	    height: 100%; 
+	    /* Full height and width */
+	    height: 100%;
+        width: 100%;
 	
 	    /* Center and scale the image nicely */
 	    background-position: center;
-	    background-repeat: no-repeat;
+	    background-repeat: repeat;
 	    background-size: cover;
+        
+        /*make the position absolut*/
+        position: absolute;
+	    top: 0; 
+	    left: 0;
+	    
+        /*make it transparent*/
+	    opacity: 0.5;
 	}
+    
+    .fg{
+    	/*make the position absolut before the bg and no opacity*/
+    	position: absolute;
+	    top: 0; 
+	    left: 0;
+    }
+    
+    .button{
+    	background-color: darkblue;
+    	color: white;
+    	padding: 15px 32px;
+    	margin: 4px 2px;
+    }
 </style>
 
 <body>
-	<div style="
-	  position: absolute;
-	  top: 0; 
-	  left: 0;
-	  width: 100%; 
-	  height: 100%;
-	  z-index: -1;
-	  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	  opacity: 0.1;
-	"></div>
-	<div style="
-	  position: absolute;
-	  top: 0; 
-	  left: 0;">
+	<div class="bg"></div>
+	<div class="fg">
 		<h1> Smart Meters Management </h1>
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<%//here is some weard going in in eclipse but it caused no damape yet
@@ -81,8 +92,7 @@
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
 			<form method="POST" action="home">
-			<input type="submit" value="Go to the home screen"
-			 	style="background-color: darkblue;color: white;padding: 15px 32px;margin: 4px 2px;" />
+			<input type="submit" value="Go to the home screen" class="button" />
 			</form>
 			<%
 		}
