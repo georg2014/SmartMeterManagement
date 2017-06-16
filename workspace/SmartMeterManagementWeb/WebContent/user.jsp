@@ -12,10 +12,28 @@
 <title>SMM</title>
 </head>
 
+<style>
+	body, html {
+	    height: 100%;
+	    margin: 0;
+	}
+	
+	.bg {
+	    /* The image used */
+	    background-image: url("img_girl.jpg");
+	
+	    /* Full height */
+	    height: 100%; 
+	
+	    /* Center and scale the image nicely */
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+</style>
+
 <body>
 	<div style="
-	  position: relative;
-	  z-index: 1;
 	  position: absolute;
 	  top: 0; 
 	  left: 0;
@@ -23,7 +41,12 @@
 	  height: 100%;
 	  z-index: -1;
 	  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	">
+	  opacity: 0.1;
+	"></div>
+	<div style="
+	  position: absolute;
+	  top: 0; 
+	  left: 0;">
 		<h1> Smart Meters Management </h1>
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<%//here is some weard going in in eclipse but it caused no damape yet
