@@ -1,0 +1,96 @@
+
+HOW TO USE JSP AND SERVLETS
+
+/**begin***********JSP-general*****/
+	JSP(Java S*** Page) are very similar to html pages they are there to show or display the contet of your web project
+	//structur of a jsp
+		<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	    pageEncoding="ISO-8859-1"%>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>displayed  in the browser tap</title>
+		</head>
+		<body>
+			<!-- enter basic html -->
+		</body>
+		</html>
+	
+/**begin***********JSP-general*****/
+
+/**begin***********Servlet-general*****/
+	Servlet are there to comunicate with the broser via http request and response
+	//structur of a servlet
+		package de.tub.as.smm;
+		
+		import java.io.IOException;
+		import javax.ejb.EJB;
+		import javax.servlet.ServletException;
+		import javax.servlet.annotation.WebServlet;
+		import javax.servlet.http.HttpServlet;
+		import javax.servlet.http.HttpServletRequest;
+		import javax.servlet.http.HttpServletResponse;
+		import de.tub.as.smm.dao.UserDao;
+		import de.tub.as.smm.models.User;
+		
+		/**
+		 * Servlet implementation class UserServlet
+		 */
+		
+		@WebServlet("/nameOfTheServlet")
+		public class UserServlet extends HttpServlet {
+			private static final long serialVersionUID = 1L;
+			
+			// Injected DAO EJB:
+		    @EJB
+		    UserDao userDao;
+		 
+		    @Override
+		    protected void doGet(
+		        HttpServletRequest request, HttpServletResponse response)
+		            throws ServletException, IOException {
+		    	
+		    	// Display the list of guests:
+		        request.setAttribute("user", userDao.getAllUsers());
+		        request.getRequestDispatcher("/user.jsp").forward(request, response);
+		 		
+		    }
+		 
+		    @Override
+		    protected void doPost(
+		        HttpServletRequest request, HttpServletResponse response)
+		            throws ServletException, IOException {
+		 
+		        // Handle a new guest:
+		        String name = request.getParameter("name");
+		        if (name != null && name != "" && name.chars().allMatch(Character::isLetter))
+		        	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
+		            userDao.persist(new User(name));
+		 
+		        // Display the list of guests:
+		        doGet(request, response);
+		    }
+		}
+
+	
+	
+/**end***********Servlet-general*****/
+
+/**begin************youtube sources*****************/
+	https://www.youtube.com/watch?v=pOUDEFVjUXM
+	//Java EE (JEE) Web Application for Beginners with Eclips
+	//length=42 min
+	
+	
+	//her only the code example are good not the context i think
+	//start here
+	https://www.youtube.com/watch?v=pOUDEFVjUXM#t=12m31s
+	
+	//simple servlet and jsp + connection
+	https://www.youtube.com/watch?v=pOUDEFVjUXM#t=18m16s
+	
+	//not tested
+	//connection jsp-servlet + form
+	https://www.youtube.com/watch?v=pOUDEFVjUXM#t=28m08s
+/**end*************youtube sources****************/
