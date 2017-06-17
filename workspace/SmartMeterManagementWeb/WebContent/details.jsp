@@ -10,7 +10,7 @@
 <style>
 	body, html {
 	    height: 100%;
-	    margin: 0;
+	    margin: center;
 	}
 	
 	.bg {
@@ -28,8 +28,9 @@
         
         /*make the position absolut*/
         position: absolute;
-	    top: 0; 
-	    left: 0;
+	    top: 0;
+        left: 25%;
+        width: 50%;
 	    
         /*make it transparent*/
 	    opacity: 0.5;
@@ -99,6 +100,9 @@
 				<td><form method="POST" action="addData"><input type="submit" value="add"class="button"/></form></td>
 			</tr>
 		</table>
+		<div><!-- algin at the bottom -->
+			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+		</div>
 	</div>
 </body>
 </html>

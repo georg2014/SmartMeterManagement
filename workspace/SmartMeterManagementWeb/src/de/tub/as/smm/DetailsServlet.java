@@ -18,27 +18,15 @@ public class DetailsServlet extends HttpServlet {
 	 
 	//attributes
 	User loggedInUser;
-	SmartMeter currentSM;
+//	SmartMeter currentSM;
 		
 		  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DetailsServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

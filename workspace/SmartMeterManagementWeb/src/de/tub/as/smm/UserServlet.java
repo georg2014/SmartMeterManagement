@@ -1,10 +1,12 @@
 package de.tub.as.smm;
 
+import java.util.List;
 import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,6 @@ public class UserServlet extends HttpServlet {
     protected void doGet(
         HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
     	// Display the list of guests:
         request.setAttribute("user1", userDao.getAllUsers());
         request.getRequestDispatcher("/user.jsp").forward(request, response);
@@ -42,19 +43,37 @@ public class UserServlet extends HttpServlet {
  
         // Handle a new guest:
         String name = request.getParameter("name");
-        if (name != null && name != "" && name.chars().allMatch(Character::isLetter))
+        if (name != null && name != "" && name.chars().allMatch(Character::isLetter)){
         	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
         	
         	//no doubles
-        	boolean tmp = true;
+        	boolean userIsNew = true;
+        	List<User> users = userDao.getAllUsers();
         	for (User user : users) {
-        		if(name == user.getName())
-        			tmp = false;
-        			//log in as old user and say that
+        		if(name == user.getName()){
+        			userIsNew = false;
+        			//log in as old user
+//        			loggedInUser = user.getUserByName(name);
+        			//tell that see user.jsp line 69
+        		}
         	}
-        	if(tmp)
-        	userDao.persist(new User(name));
- 
+        	if(userIsNew){
+        		userDao.persist(new User(name));
+//    			loggedInUser = user.getUserByName(name);
+        	}
+        }
+        
+        Cookie [] cookies = request.getCookies();
+		if(cookies != null){
+			for (Cookie cookie : cookies) {
+			     if ("loggedInUser".equals(cookie.getName())) {
+			    	 cookie.setValue(name);
+			     }
+			}
+		}else{
+	        Cookie loggedInUser = new Cookie("loggedInUser", name);
+	        response.addCookie(loggedInUser);
+		}
         // Display the list of guests:
         doGet(request, response);
     }

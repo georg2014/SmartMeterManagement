@@ -15,7 +15,7 @@
 <style>
 	body, html {
 	    height: 100%;
-	    margin: 0;
+	    margin: center;
 	}
 	
 	.bg {
@@ -43,8 +43,9 @@
     .fg{
     	/*make the position absolut before the bg and no opacity*/
     	position: absolute;
-	    top: 0; 
-	    left: 0;
+	    top: 0;
+        left: 25%;
+        width: 50%;
     }
     
     .button{
@@ -60,17 +61,19 @@
 	<div class="fg">
 		<h1> Smart Meters Management </h1>
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
-		<%//here is some weard going in in eclipse but it caused no damape yet
+		<%
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) request.getAttribute("user1");
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
-			<div>You are Logged In as: <%=users.get(users.size()-1).getName() %></div>
+			<div>You are: <big><%=users.get(users.size()-1).getName() %></big></div>
 			<%
 		}
 		%>
 		<p>Hi welcome to the Smart Meter Management Web page! <br>
-			 Please enter your name to continue(just alphabetics)!</p>
+		Please enter your name to continue(just alphabetics)! <br>
+		(Otherwise you can just see the Smart Meter Management but don't have access!)
+		</p>
 		<form method="POST" action="user">
 			Name: 	<input type="text" name="name" /> <input type="submit"value="continue" />
 		</form>
@@ -78,9 +81,9 @@
 			<ol>
 				<%	
 				if (users != null) {
-					for (User user : users) {
+					for (User user1 : users) {
 						%>
-						<li><%=user%></li>
+						<li><%=user1%></li>
 						<%
 					}
 				}
@@ -88,15 +91,23 @@
 			</ol>
 		<hr>
 		
-		<%
-		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
-			%>
-			<form method="POST" action="home">
-			<input type="submit" value="Go to the home screen" class="button" />
-			</form>
-			<%
-		}
-		%>
+		<table>
+			<tr>
+				<td>
+					<form method="POST" action="home">
+					<input type="submit" value="Go to the home screen" class="button" />
+					</form>
+				</td>
+				<td>
+					<form method="POST" action="logout">
+					<input type="submit" value="Logout" class="button" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<div><!-- algin at the bottom -->
+			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+		</div>
 	</div>
 </body>
 </html>

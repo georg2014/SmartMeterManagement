@@ -10,7 +10,7 @@
 <style>
 	body, html {
 	    height: 100%;
-	    margin: 0;
+	    margin: center;
 	}
 	
 	.bg {
@@ -38,8 +38,9 @@
     .fg{
     	/*make the position absolut before the bg and no opacity*/
     	position: absolute;
-	    top: 0; 
-	    left: 0;
+	    top: 0;
+        left: 25%;
+        width: 50%;
     }
     
     .button{
@@ -63,6 +64,7 @@
 			<tr>
 				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
 				<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
+				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
 			</tr>
 			<tr>
 			<!-- TODO -->
@@ -85,7 +87,7 @@
 			</tr>
 		</table>
 		<div><!-- algin at the bottom -->
-			<p style="position: absolute;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 		</div>
 	</div>
 </body>
