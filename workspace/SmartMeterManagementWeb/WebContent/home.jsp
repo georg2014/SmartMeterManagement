@@ -70,25 +70,19 @@
 				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
 			</tr>
 			<tr>
-			<!-- TODO -->
-			<% 
-			//getUserByName(String name)
-			//getGeraeteKennung()
-			//getMeterByGk(String gk)
-			//SmartMeter(String gk, Double max)
-			//getAllMeters()
-			//smartmeter = (List<User>) request.getAttribute("user");
-			//do this for all smart meters!
+			<%
 			@SuppressWarnings("unchecked")
 			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
-			for(SmartMeter smme : smmes){%>			
-				<td></td>
-					<td>
-						<p><%=smme.getGeraeteKennung()%></p>
-						<img src="sm1.jpg" alt="Smart Meter" width="30%">
-					</td>
-				<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
-			<%} %>
+			if(smmes != null){
+				for(SmartMeter smme : smmes){%>			
+					<td></td>
+						<td>
+							<p><%=smme.getGeraeteKennung()%></p>
+							<img src="sm1.jpg" alt="Smart Meter" width="30%">
+						</td>
+					<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
+				<%} 
+			}%>
 			</tr>
 		</table>
 		<div><!-- algin at the bottom -->

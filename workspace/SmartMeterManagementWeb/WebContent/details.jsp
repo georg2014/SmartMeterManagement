@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%> 
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,10 +69,19 @@
 			<tr>
 				<td>id</td><td>volt</td><td>current</td><td>max strain</td>
 			</tr>
-			<tr>
-				<td><%="AA12345678"%></td><td><%="100" %></td>
-				<td><%="100" %></td><td><%="100" %></td>
-			</tr>
+			<%
+			@SuppressWarnings("unchecked")
+			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
+			if(smmes != null){
+				for(SmartMeter smme : smmes){%>	
+					<tr>
+						<td><%=smme.getGeraeteKennung()%></td>
+						<td>${volt}</td><!-- TODO edit in DetailsServlet!!! line 31 ff -->
+						<td>${curr}</td><!-- TODO edit in DetailsServlet!!! -->
+						<td><%=smme.getMaxBelastung()%></td>
+					</tr>
+			<% }
+			}%>
 			<!-- display: img -->
 			<tr>
 				<td></td>
