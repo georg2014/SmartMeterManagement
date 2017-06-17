@@ -74,6 +74,17 @@ user.jsp
 	
 /**end***********Servlet-general*****/
 
+//documentation: doGet, doPost
+https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServlet.html
+//documentation: Interface HttpServletRequest - the methodes you use on request
+https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServletRequest.html
+//documentation: Interface HttpServletResponse - the methodes you use on response
+https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServletResponse.html
+//some examples(info follows)
+https://www.ntu.edu.sg/home/ehchua/programming/java/JavaServletExamples.html
+//maybe to look into the src ;)
+https://en.wikipedia.org/wiki/Java_servlet
+
 /**begin************youtube sources*****************/
 	https://www.youtube.com/watch?v=Vvnliarkw48
 	
