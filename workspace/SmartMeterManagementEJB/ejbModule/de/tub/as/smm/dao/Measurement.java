@@ -11,10 +11,12 @@ import de.tub.as.smm.models.SmartMeter;
 public class Measurement {
 	
 	public double measureVolt(){
+		//TODO
 		return Math.random()*6 + 1;
 	}
 	
 	public double measureCurr(){
+		//TODO
 		return Math.random()*6 +1;
 	}
 
