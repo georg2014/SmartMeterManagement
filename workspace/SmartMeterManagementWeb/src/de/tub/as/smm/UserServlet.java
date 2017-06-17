@@ -15,6 +15,7 @@ import de.tub.as.smm.models.User;
 /**
  * Servlet implementation class UserServlet
  */
+
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,12 +25,14 @@ public class UserServlet extends HttpServlet {
     UserDao userDao;
  
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(
+        HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-        // Display the list of guests:
+    	
+    	// Display the list of guests:
         request.setAttribute("user", userDao.getAllUsers());
         request.getRequestDispatcher("/user.jsp").forward(request, response);
+ 		
     }
  
     @Override
@@ -39,7 +42,8 @@ public class UserServlet extends HttpServlet {
  
         // Handle a new guest:
         String name = request.getParameter("name");
-        if (name != null)
+        if (name != null && name != "" && name.chars().allMatch(Character::isLetter))
+        	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
             userDao.persist(new User(name));
  
         // Display the list of guests:
