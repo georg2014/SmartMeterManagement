@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%> 
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,7 +62,7 @@
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
 		<table style="color:grey">
 			
-			<tr><th>User:</th><th><% %></th><th></th><form method="POST" action="logout"><input type="submit" value="logout"/></tr>
+			<tr><th>User:</th><th><% %></th><th></th><form method="POST" action="logout"><input type="submit" value="logout"/></form></tr>
 			<tr><th>Navigation</th></tr>
 			<tr>
 				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
@@ -77,11 +80,11 @@
 			//smartmeter = (List<User>) request.getAttribute("user");
 			//do this for all smart meters!
 			@SuppressWarnings("unchecked")
-			List<SmartMeter> users = (List<SmartMeter>) request.getAttribute("smartmeter");
+			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
 			for(SmartMeter smme : smmes){%>			
 				<td></td>
 					<td>
-						<p><%="here comes the id variable"%></p>
+						<p><%=smme.getGeraeteKennung()%></p>
 						<img src="sm1.jpg" alt="Smart Meter" width="30%">
 					</td>
 				<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			

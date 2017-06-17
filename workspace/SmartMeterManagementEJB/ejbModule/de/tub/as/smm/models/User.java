@@ -19,7 +19,8 @@ public class User implements Serializable {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = -4406793143312722444L;
+	//TODO
+//	private static final long serialVersionUID = -4406793143312722444L;
 	// Persistent Fields:
     Long id;
     private String name;
