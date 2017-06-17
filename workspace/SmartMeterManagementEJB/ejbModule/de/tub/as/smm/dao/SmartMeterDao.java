@@ -22,7 +22,19 @@ public class SmartMeterDao{
     public void persist(SmartMeter smeter) {
         em.persist(smeter);
     }
- 
+    
+    public void removeMeters(){
+    	
+    }
+    
+    public void updateMeters(){
+    	
+    }
+    
+    public SmartMeter getMeterByGk(String gk){
+    	
+    }
+    
     // Retrieves all the SmartMeters:
     public List<SmartMeter> getAllMeters() {
         TypedQuery<SmartMeter> query = em.createQuery("SELECT u FROM SmartMeter u ORDER BY u.id", SmartMeter.class);
