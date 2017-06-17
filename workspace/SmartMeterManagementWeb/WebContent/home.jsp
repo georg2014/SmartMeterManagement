@@ -75,15 +75,17 @@
 			//SmartMeter(String gk, Double max)
 			//getAllMeters()
 			//smartmeter = (List<User>) request.getAttribute("user");
-			//do this for all smart meters! %>			
+			//do this for all smart meters!
+			@SuppressWarnings("unchecked")
+			List<SmartMeter> users = (List<SmartMeter>) request.getAttribute("smartmeter");
+			for(SmartMeter smme : smmes){%>			
 				<td></td>
 					<td>
-						<!-- TODO -->
 						<p><%="here comes the id variable"%></p>
 						<img src="sm1.jpg" alt="Smart Meter" width="30%">
 					</td>
 				<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
-			<%//close %>
+			<%} %>
 			</tr>
 		</table>
 		<div><!-- algin at the bottom -->

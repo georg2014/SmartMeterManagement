@@ -63,7 +63,7 @@
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<%
 		@SuppressWarnings("unchecked")
-		List<User> users = (List<User>) request.getAttribute("user1");
+		List<User> users = (List<User>) request.getAttribute("user");
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
 			<div>You are: <big><%=users.get(users.size()-1).getName() %></big></div>
@@ -81,9 +81,9 @@
 			<ol>
 				<%	
 				if (users != null) {
-					for (User user1 : users) {
+					for (User user : users) {
 						%>
-						<li><%=user1%></li>
+						<li><%=user%></li>
 						<%
 					}
 				}
