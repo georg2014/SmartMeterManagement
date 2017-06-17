@@ -31,9 +31,9 @@ public class UserDao {
     	
     }
     
-    public User getUserByName(String name){
-    	
-    }
+//    public User getUserByName(String name){
+//    	
+//    }
     
     // Retrieves all the users:
     public List<User> getAllUsers() {

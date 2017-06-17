@@ -1,42 +1,4 @@
-<<<<<<< HEAD
-package de.tub.as.smm.models;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
- 
-    // Persistent Fields:
-    @Id @GeneratedValue
-    Long id;
-    private String name;
-    private Date signingDate;
- 
-    // Constructors:
-    public User() {
-    }
- 
-    public User(String name) {
-        this.name = name;
-        this.signingDate = new Date(System.currentTimeMillis());
-    }
- 
-    // String Representation:
-    @Override
-    public String toString() {
-        return name + " (signed on " + signingDate + ")";
-    }
-    
-    public String getName(){
-    	return name;
-    }
-=======
 package de.tub.as.smm.models;
 
 import java.io.Serializable;
@@ -54,7 +16,11 @@ import javax.persistence.Table;
 @Table(name="USERS")
 public class User implements Serializable {
  
-    // Persistent Fields:
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4406793143312722444L;
+	// Persistent Fields:
     Long id;
     private String name;
     private Date signingDate;
@@ -98,5 +64,12 @@ public class User implements Serializable {
     public String toString() {
         return name + " (signed on " + signingDate + ")";
     }
->>>>>>> refs/remotes/origin/JakobsZweigAufgabe2
+
+	public List<Reading> getReadings() {
+		return readings;
+	}
+
+	public void setReadings(List<Reading> readings) {
+		this.readings = readings;
+	}
 }

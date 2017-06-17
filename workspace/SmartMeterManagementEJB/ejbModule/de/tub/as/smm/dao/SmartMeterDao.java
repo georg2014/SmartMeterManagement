@@ -31,9 +31,9 @@ public class SmartMeterDao{
     	
     }
     
-    public SmartMeter getMeterByGk(String gk){
-    	
-    }
+//    public SmartMeter getMeterByGk(String gk){
+//    	
+//    }
     
     // Retrieves all the SmartMeters:
     public List<SmartMeter> getAllMeters() {
