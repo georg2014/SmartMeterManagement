@@ -30,7 +30,7 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
     	
     	// Display the list of guests:
-        request.setAttribute("user", userDao.getAllUsers());
+        request.setAttribute("user1", userDao.getAllUsers());
         request.getRequestDispatcher("/user.jsp").forward(request, response);
  		
     }
@@ -44,7 +44,16 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("name");
         if (name != null && name != "" && name.chars().allMatch(Character::isLetter))
         	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
-            userDao.persist(new User(name));
+        	
+        	//no doubles
+        	boolean tmp = true;
+        	for (User user : users) {
+        		if(name == user.getName())
+        			tmp = false;
+        			//log in as old user and say that
+        	}
+        	if(tmp)
+        	userDao.persist(new User(name));
  
         // Display the list of guests:
         doGet(request, response);

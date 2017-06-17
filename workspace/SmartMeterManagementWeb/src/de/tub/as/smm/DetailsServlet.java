@@ -7,13 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.tub.as.smm.models.User;
+
 /**
  * Servlet implementation class DetailsServlet
  */
 @WebServlet("/details")
 public class DetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	 
+	//attributes
+	User loggedInUser;
+	SmartMeter currentSM;
+		
+		  
     /**
      * @see HttpServlet#HttpServlet()
      */

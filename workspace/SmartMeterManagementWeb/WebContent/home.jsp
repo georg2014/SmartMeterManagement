@@ -57,6 +57,8 @@
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
 		<table style="color:grey">
+			
+			<tr><th>User:</th><th><% %></th><th></th><form method="POST" action="logout"><input type="submit" value="logout"/></tr>
 			<tr><th>Navigation</th></tr>
 			<tr>
 				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
@@ -64,12 +66,19 @@
 			</tr>
 			<tr>
 			<!-- TODO -->
-			<%//do this for all smart meters! %>			
+			<% 
+			//getUserByName(String name)
+			//getGeraeteKennung()
+			//getMeterByGk(String gk)
+			//SmartMeter(String gk, Double max)
+			//getAllMeters()
+			//smartmeter = (List<User>) request.getAttribute("user");
+			//do this for all smart meters! %>			
 				<td></td>
 					<td>
 						<!-- TODO -->
 						<p><%="here comes the id variable"%></p>
-						<img src=<%="here comes the img src variable"%> alt="Smart Meter" width="30%">
+						<img src="sm1.jpg" alt="Smart Meter" width="30%">
 					</td>
 				<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
 			<%//close %>

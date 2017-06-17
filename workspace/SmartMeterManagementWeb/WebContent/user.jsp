@@ -62,7 +62,7 @@
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<%//here is some weard going in in eclipse but it caused no damape yet
 		@SuppressWarnings("unchecked")
-		List<User> users = (List<User>) request.getAttribute("user");
+		List<User> users = (List<User>) request.getAttribute("user1");
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
 			<div>You are Logged In as: <%=users.get(users.size()-1).getName() %></div>
