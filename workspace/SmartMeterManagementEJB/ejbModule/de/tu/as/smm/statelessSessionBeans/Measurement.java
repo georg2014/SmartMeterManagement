@@ -1,4 +1,4 @@
-package de.tub.as.smm.dao;
+package de.tu.as.smm.statelessSessionBeans;
 
 import javax.ejb.Stateless;
 
