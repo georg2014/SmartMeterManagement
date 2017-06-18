@@ -18,9 +18,6 @@ public class HomeServlet extends HttpServlet {
      
 	//attributes
 	User loggedInUser;
-	
-	
-    
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

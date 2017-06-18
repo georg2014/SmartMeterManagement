@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
 
 /**
@@ -28,7 +27,7 @@ public class UserDao {
 	public void removeUser(String u) {
 		User del = getUserByName(u);
 
-		em.createQuery("DELETE u FROM User u WHERE u.id = del.id").executeUpdate();
+		em.createQuery("DELETE u FROM User u WHERE u.getId = del.id").executeUpdate();
 	}
 
 	public void updateUser() {
@@ -37,7 +36,7 @@ public class UserDao {
 
 	public User getUserByName(String name) {
 
-		User query = em.createQuery("SELECT u FROM User u WHERE u.name = name", User.class)
+		User query = em.createQuery("SELECT u FROM User u WHERE u.getName() = name", User.class)
 					   .getSingleResult();
 		return query;
 
