@@ -11,18 +11,26 @@ import de.tub.as.smm.models.SmartMeter;
 public class Measurement {
 	
 	public double measureVolt(){
-		//TODO
-		return Math.random()*6 + 1;
+		
+		double volt = Math.random()*240;
+		volt = volt*10;
+		Math.round(volt);
+		volt = volt/10;
+		return volt;
+		
 	}
 	
-	public double measureCurr(){
-		//TODO
-		return Math.random()*6 +1;
+	public double measureCurr(SmartMeter smart){
+		double curr = Math.random()*smart.getMaxBelastung();
+		curr = curr*10;
+		Math.round(curr);
+		curr = curr/10;
+		return curr;
 	}
 
-	public boolean isOverMax(SmartMeter that, Double current){
+	public boolean isOverMax(SmartMeter smart, Double current){
 		
-		if(that.getMaxBelastung() < current){
+		if(smart.getMaxBelastung() < current){
 			return true;
 		}
 		else{

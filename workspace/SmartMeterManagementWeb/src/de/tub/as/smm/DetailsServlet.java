@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.tu.as.smm.statelessSessionBeans.Measurement;
+import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
 
 
@@ -26,7 +27,8 @@ public class DetailsServlet extends HttpServlet {
 	
 	//attributes
 	User loggedInUser;
-//	SmartMeter currentSM;
+	//The Current that can be measured is relative to the max curr of the smart meter, so this is necessary
+	SmartMeter currentSM;
 		
 		  
 	@Override
@@ -38,7 +40,7 @@ public class DetailsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO details.jsp line 79 ff
 		request.setAttribute("volt", mea.measureVolt());
-		request.setAttribute("curr", mea.measureCurr());
+		request.setAttribute("curr", mea.measureCurr(currentSM));
 		
 		doGet(request, response);
 	}

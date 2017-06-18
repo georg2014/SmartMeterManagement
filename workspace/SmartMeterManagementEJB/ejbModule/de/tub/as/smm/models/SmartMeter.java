@@ -3,12 +3,15 @@ package de.tub.as.smm.models;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,26 +20,26 @@ import javax.persistence.Table;
 public class SmartMeter implements Serializable {
 
 	// Persistent Fields:
-	Long id;
-	private String geraeteKennung;
-	private Double maxBelastung;
-	private List<Reading> ablesungen;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "USER_ID")
+	@Column(name = "METER_ID")
+	Long id;
+
+	@Column(name = "GK")
+	private String geraeteKennung;
+
+	@Column(name = "MAX")
+	private Double maxBelastung;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "geraet")
+	private List<Reading> ablesungen;
+
 	public Long getId() {
 		return id;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "READINGS")
 	public List<Reading> getAblesung() {
 		return ablesungen;
-	}
-
-	public void setAblesung(List<Reading> ablesung) {
-		this.ablesungen = ablesung;
 	}
 
 	public void setId(Long id) {
