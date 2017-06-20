@@ -68,6 +68,7 @@ public class UserServlet extends HttpServlet {
         	}
         }
         
+        //add user cookie to know which user is logged in
         Cookie [] cookies = request.getCookies();
 		if(cookies != null){
 			for (Cookie cookie : cookies) {
