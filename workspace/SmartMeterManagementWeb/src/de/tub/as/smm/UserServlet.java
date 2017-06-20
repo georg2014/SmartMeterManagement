@@ -55,7 +55,7 @@ public class UserServlet extends HttpServlet {
         	boolean userIsNew = true;
         	List<User> users = userDao.getAllUsers();
         	for (User user : users) {
-        		if(name == user.getName()){
+        		if(name.equals(user.getName())){
         			userIsNew = false;
         			//log in as old user
         			//loggedInUser = userDao.getUserByName(name);
