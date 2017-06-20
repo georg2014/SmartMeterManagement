@@ -32,11 +32,14 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
     	// Display the list of guests:
         request.setAttribute("user", userDao.getAllUsers());
+<<<<<<< HEAD
         
         for(User u : userDao.getAllUsers()){
         	System.out.println(u);
         }
         
+=======
+>>>>>>> refs/remotes/origin/GeorgsZweigAufgabe2
         request.getRequestDispatcher("/user.jsp").forward(request, response);
  		
     }
@@ -68,6 +71,7 @@ public class UserServlet extends HttpServlet {
         	}
         }
         
+        //add user cookie to know which user is logged in
         Cookie [] cookies = request.getCookies();
 		if(cookies != null){
 			for (Cookie cookie : cookies) {

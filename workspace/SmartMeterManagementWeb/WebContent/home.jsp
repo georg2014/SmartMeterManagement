@@ -23,16 +23,22 @@
 			<tr><th>User:</th><th><% %></th><th></th><form method="POST" action="logout"><input type="submit" value="logout"/></form></tr>
 			<tr><th>Navigation</th></tr>
 			<tr>
-				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
-				<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
+				<!-- this should only be possible for a logged in user -->
 				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
+				<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
+				<td><p>ID(AB14658341):<input type="text" value="smartmeterGK"/></p>
+					<p>max strain(from x to y):<input type="text" value="smartmeterMB"/></p></td>
 			</tr>
 			<tr>
 			<%
 			@SuppressWarnings("unchecked")
 			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
 			if(smmes != null){
-				for(SmartMeter smme : smmes){%>			
+				for(SmartMeter smme : smmes){
+					//TODO how do I know which sm I wanna see the details of ?
+							//somehow we need to give some information within the request
+								//as cookie thisSM with the value of the gk would be great
+					%>			
 					<td></td>
 						<td>
 							<p><%=smme.getGeraeteKennung()%></p>
