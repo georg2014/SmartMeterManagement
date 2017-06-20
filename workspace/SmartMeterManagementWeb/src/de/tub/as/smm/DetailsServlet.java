@@ -13,14 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.tu.as.smm.statelessSessionBeans.Measurement;
 import de.tub.as.smm.models.SmartMeter;
-<<<<<<< HEAD
+
 import de.tub.as.smm.models.User;
-=======
 
 /**
  * May be better to filter user cookie and smart meter cookie ....
  */
->>>>>>> refs/remotes/origin/GeorgsZweigAufgabe2
 
 
 /**
@@ -33,15 +31,14 @@ public class DetailsServlet extends HttpServlet {
 	// Injected EJB:
     @EJB
     Measurement mea;
-<<<<<<< HEAD
+
 	
-	//attributes
+	//Logged in User
 	User loggedInUser;
 	//The Current that can be measured is relative to the max curr of the smart meter, so this is necessary
 	SmartMeter currentSM;
-=======
-//	SmartMeter currentSM;
->>>>>>> refs/remotes/origin/GeorgsZweigAufgabe2
+
+
 		
 		  
 	@Override
