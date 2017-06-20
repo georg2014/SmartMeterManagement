@@ -66,7 +66,7 @@
 		List<User> users = (List<User>) request.getAttribute("user");
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
-			<div>You are: <big><%=users.get(users.size()-1).getName() %></big></div>
+			<div>You are logged in as: <big><%=users.get(users.size()-1).getName() %></big></div>
 			<%
 		}
 		%>

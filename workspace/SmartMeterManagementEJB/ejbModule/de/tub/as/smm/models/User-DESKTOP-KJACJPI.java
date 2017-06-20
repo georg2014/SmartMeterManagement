@@ -16,15 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
 public class User implements Serializable {
 
 	// Persistent Fields:
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7357486923885344708L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

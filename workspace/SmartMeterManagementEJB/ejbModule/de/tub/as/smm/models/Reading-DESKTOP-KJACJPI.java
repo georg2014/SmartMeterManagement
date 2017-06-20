@@ -14,13 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
 public class Reading implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7484804196838031411L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
