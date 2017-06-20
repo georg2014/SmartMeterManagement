@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%> 
+<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter,de.tub.as.smm.models.Reading"%> 
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -64,6 +64,7 @@
 			<tr><th>Navigation</th></tr>
 			<tr>
 				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
+				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
@@ -71,16 +72,33 @@
 			</tr>
 			<%
 			@SuppressWarnings("unchecked")
-			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
-			if(smmes != null){
-				for(SmartMeter smme : smmes){%>	
-					<tr>
-						<td><%=smme.getGeraeteKennung()%></td>
-						<td>${volt}</td><!-- TODO edit in DetailsServlet!!! line 31 ff -->
-						<td>${curr}</td><!-- TODO edit in DetailsServlet!!! -->
-						<td><%=smme.getMaxBelastung()%></td>
-					</tr>
-			<% }
+			//info of this sm via cookie get sm if user logged in
+			//look which sm is to show
+			SmartMeter thisSM = null;
+	        Cookie [] cookies = request.getCookies();
+			if(cookies != null){
+				for (Cookie cookieSM : cookies) {
+				     if ("thisSM".equals(cookieSM.getName())) {
+				    	String thisGK = cookieSM.getValue();
+						if(thisGK != ""){
+							//TODO inser servlet smart meter with smart meter dao!
+							List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
+							if (smmes != null) {
+								for (SmartMeter smme : smmes) {
+									if(smme.getGeraeteKennung() == thisGK){
+										thisSM =smme;%>	
+										<tr>
+											<td><%=smme.getGeraeteKennung()%></td>
+											<td>${volt}</td><!-- TODO edit in DetailsServlet!!! line 31 ff -->
+											<td>${curr}	</td><!-- TODO edit in DetailsServlet!!! -->
+											<td><%=smme.getMaxBelastung()%></td>
+										</tr>
+									<%}
+								}
+							}
+						}
+				     }
+				}
 			}%>
 			<!-- display: img -->
 			<tr>
@@ -94,23 +112,31 @@
 			<!-- display: option to typ in kWh -->
 			<tr>
 				<!-- TODO how to work with the inout??? -->
-				<td>kWh: </td><td><input type="text"></td>
+				<td>kWh: </td><td>kWh:<input type="text" value="kWh"></td>
+				<td><form method="POST" action="addData"><input type="submit" value="add"class="button"/></form></td>
 			</tr>
-			<!-- display: typed in data -->
+			<!-- display: typed in data via reading of this sm from logged in user -->
 			<tr>
 				<td>name</td><td>date</td><td>kWh</td><td></td>
 			</tr>
-			<tr>
-				<!-- output -->
-				<!-- output next -->
-				<!-- TODO -->
-				<td>tom</td>
-				<td>15.06.2017</td>
-				<td>645kWh</td>
-			</tr>
-			<tr>
-				<td><form method="POST" action="addData"><input type="submit" value="add"class="button"/></form></td>
-			</tr>
+			<%
+			if(thisSM != null){
+				@SuppressWarnings("unchecked")
+				List<Reading> smmer = thisSM.getAblesung();
+				if (smmer != null) {
+					for (Reading r : smmer) {
+				 %>
+					<tr>
+						<!-- output -->
+						<!-- output next -->
+						<!-- TODO -->
+						<td><%=r.getBenutzer() %></td>
+						<td><%=r.getZp() %></td>
+						<td><%=r.getKwh() %>kWh</td>
+					</tr>
+				<% }
+				}
+			}%>
 		</table>
 		<div><!-- algin at the bottom -->
 			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
