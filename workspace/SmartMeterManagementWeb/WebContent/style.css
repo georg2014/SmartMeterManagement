@@ -1,0 +1,104 @@
+/*Damit die Kopf und Fußzeile Randlos dargestellt werden*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/*Randlose Kopfzeile über die gesamte breite*/
+header{
+	top: 0;
+	width: 100%;
+	padding: 20px;
+	color: white;
+	background-color: black;
+	text-align: center;
+}
+
+/*In der Mitte ausgerichteter Seiten Körper*/
+body {
+	color: black;
+	align-content: center;
+	text-align: center;
+}
+
+/*Nicht optimale Fußzeile die am Seitenende sitzt*/
+footer{
+	position: absolute;
+	bottom: 0;
+	width:100%;
+	padding: 10px;
+	color: white;
+	background-color: black;
+	font-size: 1;
+	text-align: left;
+}
+
+/*Navigationszeile oben lins*/
+nav{
+	color: black;
+	text-align: left;
+}
+
+/*Gallerie mit Übersichtsbildern*/
+.gallery {
+	/*Display flex damit die Bilder nebeneinander angeordnet werden*/
+	display: flex;
+	width: 100%;
+	height: 90%;
+	align-items: center;
+	justify-content: center;
+}
+
+/*Kinder vom Typ div der Gallerie in der die Bilder sind*/
+.gallery > div {
+	margin:0;
+	position: relative;
+	float: left;
+	padding: 20px;
+}
+
+/*Ein Rahmen wird um das Bild angezeigt auf dem man die Maus bewegt*/
+.gallery > div:hover {
+	border: 1px solid #777;
+}
+
+/*Text/Werte die auf dem Bild der Detailansicht von Smart Meter 2 stehen*/
+#imgtxt2{
+	font-size: 90%;
+	position: absolute;
+	top: 180px;
+	left: -5px;
+	width: 100%;
+}
+
+/*Text/Werte die auf dem Bild der Detailansicht von Smart Meter 1 stehen*/
+#imgtxt1{
+	font-size: 90%;
+	position: absolute;
+	top: 150px;
+	left: -5px;
+	width: 100%;
+}
+
+/*Stil des Formulars für Nutzereingaben*/
+form{
+	padding: 1em;
+	color: black;
+	background-color: white;
+	text-align: center;
+}
+
+/*Tabelle mit dünnem Rahmen über die gesamte Breite*/
+table{
+	width: 100%;
+	border-collapse: collapse;
+	padding: 5px;
+	color: black;
+	background-color: white;
+	text-align: center;
+}
+
+/*Rahmen für die einzelnen Tabellenelemente*/
+tr,th,td{
+	border: 1px solid black;
+}

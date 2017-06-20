@@ -31,7 +31,7 @@ public class UserServlet extends HttpServlet {
         HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	// Display the list of guests:
-        request.setAttribute("user1", userDao.getAllUsers());
+        request.setAttribute("user", userDao.getAllUsers());
         
         for(User u : userDao.getAllUsers()){
         	System.out.println(u);

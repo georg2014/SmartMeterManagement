@@ -18,7 +18,7 @@ import de.tub.as.smm.models.User;
 public class SmartMeterDao {
 
 	// Injected database connection:
-	@PersistenceContext(name="primary")
+	@PersistenceContext(name = "primary")
 	private EntityManager em;
 
 	// Stores a new SmartMeter:
@@ -34,8 +34,15 @@ public class SmartMeterDao {
 
 	}
 
-	public void updateMeters() {
+	public void updateMeters(String gk, String newgk, Double max) {
 
+		SmartMeter up = getMeterByGk(gk);
+		if (newgk != null) {
+			em.createQuery("UPDATE SmartMeter m SET m.geraeteKennung = newgk WHERE m.id = up.id ").executeUpdate();
+		}
+		if (max != null) {
+			em.createQuery("UPDATE SmartMeter m SET m.maxBelastung = max WHERE m.id = up.id ").executeUpdate();
+		}
 	}
 
 	public SmartMeter getMeterByGk(String gk) {
@@ -53,7 +60,8 @@ public class SmartMeterDao {
 
 	public List<Reading> getSpecificReadings(SmartMeter sm, User u) {
 		List<Reading> query = em
-				.createQuery("SELECT r FROM Reading r WHERE r.gereat.id = sm.id AND WHERE r.benutzer.id = u.id",Reading.class)
+				.createQuery("SELECT r FROM Reading r WHERE r.gereat.id = sm.id AND WHERE r.benutzer.id = u.id",
+						Reading.class)
 				.getResultList();
 		return query;
 	}

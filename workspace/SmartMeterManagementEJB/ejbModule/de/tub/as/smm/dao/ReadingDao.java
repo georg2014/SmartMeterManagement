@@ -27,10 +27,6 @@ public class ReadingDao {
 
 	}
 
-	public void updateMeters() {
-
-	}
-	
 	// Retrieves a reading with the matching id
 	public Reading getReadingById(Long id) {
 
