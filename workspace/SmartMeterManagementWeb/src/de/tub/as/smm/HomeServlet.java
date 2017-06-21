@@ -2,8 +2,6 @@ package de.tub.as.smm;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Pattern;
-
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.tub.as.smm.dao.SmartMeterDao;
-import de.tub.as.smm.dao.UserDao;
 import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
 
@@ -30,13 +27,8 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
-			User loggedInUser = (User) request.getSession().getAttribute("loggedInUser");
-			request.setAttribute("loggedInUsr", loggedInUser.getName());
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-		
+		request.setAttribute("loggedInUser", request.getSession().getAttribute("sessionUser"));
+
 		request.setAttribute("meterList", meterDao.getAllMeters());
 
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
@@ -46,11 +38,11 @@ public class HomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
-			// Handle a new Smart Meter:
-			System.out.println(request.getParameter("gk"));
-			System.out.println(request.getParameter("max"));
-			String gk = request.getParameter("gk");
+		// Handle a new Smart Meter:
+		String gk = request.getParameter("gk");
+
+		if (request.getParameter("max").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+			
 			Double max = Double.parseDouble(request.getParameter("max"));
 
 			if (gk.matches("[A-Z]{2}[0-9]{8}") && max >= 50 && max <= 100) {
@@ -69,11 +61,9 @@ public class HomeServlet extends HttpServlet {
 					meterDao.persist(new SmartMeter(gk, max));
 				}
 
-				doGet(request, response);
 			}
-		} catch (NullPointerException e) {
-			System.out.println("Form was empty");
-			doGet(request, response);
 		}
+		doGet(request, response);
+
 	}
 }

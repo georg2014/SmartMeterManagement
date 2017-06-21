@@ -18,11 +18,13 @@
 <body>
 	<div class="bg"></div>
 	<div class="fg">
-	
-	<div class="header"><h1>Smart Meters Management</h1>
-		<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4></div>
-		
-		
+
+		<div class="header">
+			<h1>Smart Meters Management</h1>
+			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
+		</div>
+
+
 
 		<p>
 			Hi welcome to the Smart Meter Management Web page! <br> Please
@@ -33,26 +35,28 @@
 			Name: <input type="text" name="name" /> <input type="submit"
 				value="Sign in" />
 		</form>
+		<p>
+			You are logged in as : <b>${loggedInUser}</b>
+		</p>
+		<form method="GET" action="home">
+			<input type="submit" value="Go to Smart Meter Overview">
+		</form>
+
 		<hr>
-			<p>Signed in users:</p>
-			<c:forEach items="${userList}" var="user">
-				
-				<p>${user}</p>
-			</c:forEach>
-	
+		<p>Signed in users:</p>
+		<c:forEach items="${userList}" var="user">
+
+			<p>${user}</p>
+		</c:forEach>
+
 		<hr>
 
 		<table>
 			<tr>
 
 				<td>
-					<form method="POST" action="logout">
+					<form method="GET" action="logout">
 						<input type="submit" value="Logout" />
-					</form>
-				</td>
-				<td>
-					<form method="GET" action="home">
-						<input type="submit" value="Go to Smart Meter Overview" />
 					</form>
 				</td>
 			</tr>

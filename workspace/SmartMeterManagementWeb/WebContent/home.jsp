@@ -25,7 +25,7 @@
 
 
 			
-				<th>Logged in as: <big>${loggedInUsr}</big></th>
+				<th>Logged in as: <big>${loggedInUser}</big></th>
 				
 				<p></p>
 
@@ -60,7 +60,7 @@
 			<tr>
 
 				<td>
-					<form method="POST" action="logout">
+					<form method="GET" action="logout">
 						<input type="submit" value="Logout" />
 					</form>
 				</td>
