@@ -32,7 +32,7 @@ public class UserServlet extends HttpServlet {
 		// Display the list of guests:
 		List<User> userList = userDao.getAllUsers();
 		request.setAttribute("userList", userList);
-		request.getRequestDispatcher("/user").forward(request, response);
+		request.getRequestDispatcher("/user.jsp").forward(request, response);
 
 	}
 
@@ -40,25 +40,29 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Handle a new guest:
-		String name = request.getParameter("name");
-		if (!name.equals(null) && name.chars().allMatch(c -> Character.isLetter(c))) {
-			
-			boolean userIsNew = true;
+		try {
+			// Handle a new guest:
+			String name = request.getParameter("name");
+			if (!name.equals(null) && name.chars().allMatch(c -> Character.isLetter(c))) {
 
-			for (User user : userDao.getAllUsers()) {
-				if (name.equals(user.getName())) {
-					userIsNew = false;
-					request.getSession().setAttribute("loggedInUser", userDao.getUserByName(name));
-					request.getRequestDispatcher("/home").forward(request,response);
+				boolean userIsNew = true;
+
+				for (User user : userDao.getAllUsers()) {
+					if (name.equals(user.getName())) {
+						userIsNew = false;
+						request.getSession().setAttribute("loggedInUser", userDao.getUserByName(name));
+						request.getRequestDispatcher("/home").forward(request, response);
+					}
 				}
+				if (userIsNew) {
+					userDao.persist(new User(name));
+					request.getSession().setAttribute("loggedInUser", userDao.getUserByName(name));
+					request.getRequestDispatcher("/home").forward(request, response);
+				}
+
+				doGet(request, response);
 			}
-			if (userIsNew) {
-				userDao.persist(new User(name));
-				request.getSession().setAttribute("loggedInUser", userDao.getUserByName(name));
-				request.getRequestDispatcher("/home").forward(request,response);
-			}
-			
+		} catch (NullPointerException e) {
 			doGet(request, response);
 		}
 	}
