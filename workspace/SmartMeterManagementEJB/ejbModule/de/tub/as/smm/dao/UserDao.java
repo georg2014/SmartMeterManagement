@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
 
 /**
@@ -20,36 +19,64 @@ public class UserDao {
 	@PersistenceContext(name="primary")
 	private EntityManager em;
 
-	// Stores a new user:
+	/**
+	 * Stores a new User
+	 * @param user
+	 */
 	public void persist(User user) {
 		em.persist(user);
 		
 	}
-
+	
+	/**
+	 * Removes the user that matches the name
+	 * @param u Name
+	 */
 	public void removeUser(String u) {
-		User del = getUserByName(u);
-
-		em.createQuery("DELETE u FROM User u WHERE u.getId = del.id").executeUpdate();
+		em.createQuery("DELETE u FROM User u WHERE u.id = ?0.id")
+		.setParameter(0, getUserByName(u))
+		.executeUpdate();
 	}
-
+	
+	/**
+	 * Updates a users name
+	 * @param name Old name
+	 * @param newname
+	 */
 	public void updateUser(String name ,String newname) {
-		User u = getUserByName(name);
 		
 		if (newname != null) {
-			em.createQuery("UPDATE User us SET us.name = newname WHERE u.id = us.id ").executeUpdate();
+			em.createQuery("UPDATE User us SET us.name = ?0 WHERE ?1.id = us.id ")
+			.setParameter(0, newname)
+			.setParameter(1, getUserByName(newname))
+			.executeUpdate();
 		}
 		
 	}
-
+	
+	/**
+	 * @param name
+	 * @return The user that goes with the given name
+	 */
 	public User getUserByName(String name) {
-
-		User query = em.createQuery("SELECT u FROM User u WHERE u.getName() = name", User.class)
+		
+		try{
+		User query = em.createQuery("SELECT u FROM User u WHERE u.name = ?0", User.class)
+						.setParameter(0, name)
 					   .getSingleResult();
-		return query;
+			return query;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		
 
 	}
-
-	// Retrieves all the users:
+	
+	/**
+	 * @return All users in this Database
+	 */
 	public List<User> getAllUsers() {
 		TypedQuery<User> query = em.createQuery("SELECT u FROM User u ORDER BY u.id", User.class);
 		return query.getResultList();

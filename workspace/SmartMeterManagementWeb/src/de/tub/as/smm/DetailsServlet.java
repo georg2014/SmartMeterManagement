@@ -53,7 +53,7 @@ public class DetailsServlet extends HttpServlet {
 		request.setAttribute("curr", mea.measureCurr(currentSM));
 		
 //		/**
-//		 * Copy Paste from userServlet ...
+//		 * Copy Pasta from userServlet ...
 //		 */
 //		//look which sm is to show
 //        Cookie [] cookies = request.getCookies();
@@ -64,7 +64,7 @@ public class DetailsServlet extends HttpServlet {
 //			    	 
 //			    	 
 //			    	 /**
-//			    	  * Copy Paste from addSmServlet ...
+//			    	  * Copy Pasta from addSmServlet ...
 //			    	  */
 //			    	 //look if a user is logged in
 //		    	 	 for (Cookie cookieU : cookies) {

@@ -21,8 +21,7 @@
 		<table class=tableDefault>
 			<tr><th>Navigation</th></tr>
 			<tr>
-				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
-				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
+				<td><form method="POST" action="home"><input type="submit" value="Smart Meter Übersicht" class="button"/></form></td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
@@ -97,6 +96,9 @@
 			}%>
 		</table>
 		<div><!-- algin at the bottom -->
+			<tr></tr>
+			<tr></tr>
+			<input type="submit" value="Logout" class="button">
 			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 		</div>
 	</div>

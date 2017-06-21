@@ -54,7 +54,7 @@
 			<tr>
 				<td>
 					<form method="POST" action="home">
-					<input type="submit" value="Go to the home screen" class="button" />
+					<input type="submit" value="Smart Meter overview" class="button" />
 					</form>
 				</td>
 				<td>

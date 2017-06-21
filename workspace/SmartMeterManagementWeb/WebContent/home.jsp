@@ -20,14 +20,13 @@
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
 		<table style="color:grey">
 			
-			<tr><th>User:</th><th><% %></th><th></th><form method="POST" action="logout"><input type="submit" value="logout"/></form></tr>
-			<tr><th>Navigation</th></tr>
+			<tr><th>Logged in User:</th><th><% %></th><th></th></tr>
 			<tr>
 				<!-- this should only be possible for a logged in user -->
-				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
-				<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
-				<td><p>ID(AB14658341):<input type="text" value="smartmeterGK"/></p>
-					<p>max strain(from x to y):<input type="text" value="smartmeterMB"/></p></td>
+				<td><form method="POST" action="logout"></form></td>
+				<td><p>Gerätekennung :<input type="text" value=""></p>
+					<p>Maximale Belastung:<input type="text" value=""/></p></td>
+					<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
 			</tr>
 			<tr>
 			<%
@@ -42,14 +41,17 @@
 					<td></td>
 						<td>
 							<p><%=smme.getGeraeteKennung()%></p>
-							<img src="sm1.jpg" alt="Smart Meter" width="30%">
+							<img src="sm1.jpg" alt="Smart Meter" width="30%" style=" width : 115px;">
 						</td>
-					<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
+					<td><form method="POST" action="details"></form><input type="submit" value="details"></td>			
 				<%} 
 			}%>
 			</tr>
 		</table>
 		<div><!-- algin at the bottom -->
+			<tr></tr>
+			<tr></tr>
+			<input type="submit" value="Logout" class="button">
 			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 		</div>
 	</div>

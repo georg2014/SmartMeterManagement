@@ -14,8 +14,7 @@ import de.tub.as.smm.models.User;
  */
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-     
+
 	//attributes
 	User loggedInUser;
 
