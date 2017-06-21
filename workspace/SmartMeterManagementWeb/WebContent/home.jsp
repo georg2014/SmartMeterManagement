@@ -1,55 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%> 
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>SMM</title>
+<link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-<div style="
-	  position: relative;
-	  z-index: 1;
-	  position: absolute;
-	  top: 0; 
-	  left: 0;
-	  width: 100%; 
-	  height: 100%;
-	  z-index: -1;
-	  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	">
+	<div class="bg"></div>
+	<div class="fg">
 		<h1> Smart Meters Management </h1>
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
 		<table style="color:grey">
-			<tr><th>Navigation</th></tr>
+			
+			<tr><th>Logged in User:</th><th><% %></th><th></th></tr>
 			<tr>
-				<td><form method="POST" action="home"><input type="submit" value="home"
-				style="background-color: darkblue;
-	   			color: white;
-	   			padding: 15px 32px;
-				margin: 4px 2px;"/></form></td>
-				<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter"
-				style="background-color: darkblue;
-	   			color: white;
-	   			padding: 15px 32px;
-				margin: 4px 2px;"/></form></td>
+				<!-- this should only be possible for a logged in user -->
+				<td><form method="POST" action="logout"></form></td>
+				<td><p>Gerätekennung :<input type="text" value=""></p>
+					<p>Maximale Belastung:<input type="text" value=""/></p></td>
+					<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
 			</tr>
 			<tr>
-			<!-- TODO -->
-			<%//do this for all smart meters! %>			
-				<td></td>
-					<td>
-						<!-- TODO -->
-						<p><%="here comes the id variable"%></p>
-						<img src=<%="here comes the img src variable"%> alt="Smart Meter" width="30%">
-					</td>
-				<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
-			<%//close %>
+			<%
+			@SuppressWarnings("unchecked")
+			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
+			if(smmes != null){
+				for(SmartMeter smme : smmes){
+					//TODO how do I know which sm I wanna see the details of ?
+							//somehow we need to give some information within the request
+								//as cookie thisSM with the value of the gk would be great
+					%>			
+					<td></td>
+						<td>
+							<p><%=smme.getGeraeteKennung()%></p>
+							<img src="sm1.jpg" alt="Smart Meter" width="30%" style=" width : 115px;">
+						</td>
+					<td><form method="POST" action="details"></form><input type="submit" value="details"></td>			
+				<%} 
+			}%>
 			</tr>
 		</table>
 		<div><!-- algin at the bottom -->
-			<p style="position: absolute;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+			<tr></tr>
+			<tr></tr>
+			<input type="submit" value="Logout" class="button">
+			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 		</div>
 	</div>
 </body>

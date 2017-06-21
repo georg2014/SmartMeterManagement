@@ -10,33 +10,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SMM</title>
+<link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
 </head>
 
+
 <body>
-	<div style="
-	  position: relative;
-	  z-index: 1;
-	  position: absolute;
-	  top: 0; 
-	  left: 0;
-	  width: 100%; 
-	  height: 100%;
-	  z-index: -1;
-	  background:  url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	">
+	<div class="bg"></div>
+	<div class="fg">
 		<h1> Smart Meters Management </h1>
 		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
-		<%//here is some weard going in in eclipse but it caused no damape yet
+		<%
 		@SuppressWarnings("unchecked")
 		List<User> users = (List<User>) request.getAttribute("user");
 		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
 			%>
-			<div>You are Logged In as: <%=users.get(users.size()-1).getName() %></div>
+			<div>You are logged in as: <big><%=users.get(users.size()-1).getName() %></big></div>
 			<%
 		}
 		%>
 		<p>Hi welcome to the Smart Meter Management Web page! <br>
-			 Please enter your name to continue(just alphabetics)!</p>
+		Please enter your name to continue(just alphabetics)! <br>
+		(Otherwise you can just see the Smart Meter Management but don't have access!)
+		</p>
 		<form method="POST" action="user">
 			Name: 	<input type="text" name="name" /> <input type="submit"value="continue" />
 		</form>
@@ -54,16 +50,23 @@
 			</ol>
 		<hr>
 		
-		<%
-		if (users != null && users.size() > 0 && users.get(users.size()-1).getName() != "" && users.get(users.size()-1).getName().chars().allMatch(Character::isLetter)) {
-			%>
-			<form method="POST" action="home">
-			<input type="submit" value="Go to the home screen"
-			 	style="background-color: darkblue;color: white;padding: 15px 32px;margin: 4px 2px;" />
-			</form>
-			<%
-		}
-		%>
+		<table>
+			<tr>
+				<td>
+					<form method="POST" action="home">
+					<input type="submit" value="Smart Meter overview" class="button" />
+					</form>
+				</td>
+				<td>
+					<form method="POST" action="logout">
+					<input type="submit" value="Logout" class="button" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<div><!-- algin at the bottom -->
+			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+		</div>
 	</div>
 </body>
 </html>

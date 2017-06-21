@@ -1,2 +1,2 @@
 
-	<%@ include file="user.jsp" %>
+<%@ include file="user.jsp" %>
