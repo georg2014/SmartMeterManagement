@@ -17,19 +17,13 @@ public class LogoutServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/user.jsp").forward(request, response);
+		System.out.println(request.getSession().getAttribute("loggedInUser"));
+		request.getSession().invalidate();
+		request.getRequestDispatcher("/user").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cookie [] cookies = request.getCookies();
-		if(cookies != null){
-			for (Cookie cookie : cookies) {
-			     if ("loggedInUser".equals(cookie.getName())) {
-			    	 cookie.setValue(null);
-			     }
-			}
-		}
 		doGet(request, response);
 	}
 

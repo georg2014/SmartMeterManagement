@@ -28,10 +28,11 @@ public class UserServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Display the list of guests:
-		request.setAttribute("user", userDao.getAllUsers());
 
-		request.getRequestDispatcher("/user.jsp").forward(request, response);
+		// Display the list of guests:
+		List<User> userList = userDao.getAllUsers();
+		request.setAttribute("userList", userList);
+		request.getRequestDispatcher("/user").forward(request, response);
 
 	}
 
@@ -41,42 +42,24 @@ public class UserServlet extends HttpServlet {
 
 		// Handle a new guest:
 		String name = request.getParameter("name");
-		if (name != null && name.chars().allMatch(c -> Character.isLetter(c))) {
-
-			List<User> users = userDao.getAllUsers();
-
+		if (!name.equals(null) && name.chars().allMatch(c -> Character.isLetter(c))) {
+			
 			boolean userIsNew = true;
 
-			for (User user : users) {
+			for (User user : userDao.getAllUsers()) {
 				if (name.equals(user.getName())) {
 					userIsNew = false;
-					// log in as old user
-					// loggedInUser = userDao.getUserByName(name);
-					// tell that see user.jsp line 69
+					request.getSession().setAttribute("loggedInUser", userDao.getUserByName(name));
+					request.getRequestDispatcher("/home").forward(request,response);
 				}
 			}
 			if (userIsNew) {
-
 				userDao.persist(new User(name));
-				
-
+				request.getSession().setAttribute("loggedInUser", userDao.getUserByName(name));
+				request.getRequestDispatcher("/home").forward(request,response);
 			}
 			
+			doGet(request, response);
 		}
-
-		// add user cookie to know which user is logged in
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if ("loggedInUser".equals(cookie.getName())) {
-					cookie.setValue(name);
-				}
-			}
-		} else {
-			Cookie loggedInUser = new Cookie("loggedInUser", name);
-			response.addCookie(loggedInUser);
-		}
-		// Display the list of guests:
-		doGet(request, response);
 	}
 }
