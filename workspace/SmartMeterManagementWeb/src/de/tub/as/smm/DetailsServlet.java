@@ -39,15 +39,10 @@ public class DetailsServlet extends HttpServlet {
 		
 		
 		//setter
-			//doesnt work because it is refering to the home.jsp not the details jsp i guess
-//		System.err.println(request.getParameter("thisGK"));
-//		request.setAttribute("deviceNumber", request.getParameter("thisGK"));
-//		System.err.println(mea.measureVolt());
-//		request.setAttribute("volt", mea.measureVolt());
-//		System.err.println(mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
-//		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
-//		System.err.println(smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
-//		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
+		request.setAttribute("deviceNumber", request.getParameter("thisGK"));
+		request.setAttribute("volt", mea.measureVolt());
+		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
+		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
 		//send details.jsp
 		request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
@@ -58,7 +53,6 @@ public class DetailsServlet extends HttpServlet {
 		// Handle the Details view
 		//get the device id
 		String thisGK = request.getParameter("thisGK");
-		System.err.println(thisGK);
 		
 		//save the device id as session for the smart meter
 		request.getSession().setAttribute("sessionSM", smartMeterDao.getMeterByGk(thisGK));

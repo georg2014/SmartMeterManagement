@@ -28,19 +28,12 @@
 			<tr>
 				<th>id</th><th>volt</th><th>current</th><th>max strain</th>
 			</tr>
-			<%
-			@SuppressWarnings("unchecked")
-			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
-			if(smmes != null){
-				for(SmartMeter smme : smmes){%>	
-					<tr>
-						<td>${deviceNumber}</td>
-						<td>${volt}</td><!-- TODO edit in DetailsServlet!!! line 31 ff -->
-						<td>${curr}</td><!-- TODO edit in DetailsServlet!!! -->
-						<td>${max}</td>
-					</tr>
-			<% }
-			}%>
+			<tr>
+				<td>${deviceNumber}</td>
+				<td>${volt}</td>
+				<td>${curr}</td>
+				<td>${max}</td>
+			</tr>
 			<!-- display: img -->
 			<tr>
 				<td></td>
@@ -62,6 +55,7 @@
 				<tr>
 					<td>name</td><td>date</td><td>kWh</td><td></td>
 				</tr>
+				<!-- show all readings -->
 				<tr>
 					<!-- output -->
 					<!-- output next -->
@@ -70,6 +64,7 @@
 					<td>15.06.2017</td>
 					<td>645kWh</td>
 				</tr>
+				
 			</table>
 		</form>
 		<div><!-- algin at the bottom -->
