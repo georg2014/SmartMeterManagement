@@ -10,11 +10,11 @@ import de.tub.as.smm.models.SmartMeter;
 @Stateless
 public class Measurement {
 	
-	public double measureVolt(){
-		
-		/**
+	/**
 		Die Spannung(Genauigkeit: 0.1 Volt)
 		soll zwischen 220 und 240 Volt liegen*/
+	public double measureVolt(){
+		
 		double volt = Math.random()*20;
 		volt = (volt+220)*10;
 		Math.round(volt);
@@ -23,11 +23,11 @@ public class Measurement {
 		
 	}
 	
-	public double measureCurr(SmartMeter smart){
-		/**
+	/**
 		die Stromstärke (Genauigkeit: 0.1 Ampere) 
 		zwischen 0 und (der jeweiligen maximalen Belastung 
 		+5 Ampere) */
+	public double measureCurr(SmartMeter smart){
 		double curr = Math.random()*smart.getMaxBelastung();
 		curr = curr*10;
 		Math.round(curr);
