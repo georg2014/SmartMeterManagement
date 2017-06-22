@@ -46,13 +46,16 @@
 
 			<c:forEach items="${meterList}" var="meter">
 				<hr>
-					<p><img src="sm1.jpg" alt="Smart Meter" width="20%"></p>
-					<p>Gerätekennung :</p>
-					<p>${meter.geraeteKennung}</p>
-				
-
+					<form method="POST" action="details">
+						<p><img src="sm1.jpg" alt="Smart Meter" width="20%"></p>
+						<p>Gerätekennung :</p>
+						<p>${meter.geraeteKennung}</p>
+						<input type="hidden" name="thisGK" value="${meter.geraeteKennung}"/>						
+						<!-- to go to the details view of the yirrent smaer meter -->
+						<input type="submit" value="Go To Details"/>
+					</form>
+				<hr>
 			</c:forEach>
-			<hr>
 			<tr>
 
 			</tr>
