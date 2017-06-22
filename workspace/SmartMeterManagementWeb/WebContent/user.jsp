@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@page import="java.util.*,de.tub.as.smm.models.User"%>
+<%@ page import="java.util.*,de.tub.as.smm.models.User"%>
 
 <!-- the first page you see as user -->
 
