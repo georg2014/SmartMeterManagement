@@ -29,16 +29,12 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-			request.setAttribute("loggedInUser", request.getSession().getAttribute("sessionUser"));
-		
-		
+		request.setAttribute("loggedInUser", request.getSession().getAttribute("sessionUser"));
 		
 		// Display the list of guests:
 		List<User> userList = userDao.getAllUsers();
 		request.setAttribute("userList", userList);
 		request.getRequestDispatcher("/user.jsp").forward(request, response);
-
 	}
 
 	@Override
@@ -61,8 +57,6 @@ public class UserServlet extends HttpServlet {
 				userDao.persist(new User(name));
 				request.getSession().setAttribute("sessionUser", userDao.getUserByName(name));
 			}
-
-			
 		}
 		doGet(request, response);
 	}

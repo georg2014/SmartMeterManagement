@@ -22,10 +22,11 @@
 			<tr><th>Navigation</th></tr>
 			<tr>
 				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
+				<td><form method="GET" action="logout"><input type="submit" value="Logout" /></form></td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
-				<td>id</td><td>volt</td><td>current</td><td>max strain</td>
+				<th>id</th><th>volt</th><th>current</th><th>max strain</th>
 			</tr>
 			<%
 			@SuppressWarnings("unchecked")
@@ -33,10 +34,10 @@
 			if(smmes != null){
 				for(SmartMeter smme : smmes){%>	
 					<tr>
-						<td><%=smme.getGeraeteKennung()%></td>
+						<td>${deviceNumber}</td>
 						<td>${volt}</td><!-- TODO edit in DetailsServlet!!! line 31 ff -->
 						<td>${curr}</td><!-- TODO edit in DetailsServlet!!! -->
-						<td><%=smme.getMaxBelastung()%></td>
+						<td>${max}</td>
 					</tr>
 			<% }
 			}%>
@@ -45,31 +46,32 @@
 				<td></td>
 					<td>
 						<p>Smart Meter</p>
-						<!-- TODO -->
 						<img src="sm1.jpg">
 					</td>
 			</tr>
-			<!-- display: option to typ in kWh -->
-			<tr>
-				<!-- TODO how to work with the inout??? -->
-				<td>kWh: </td><td><input type="text"></td>
-			</tr>
-			<!-- display: typed in data -->
-			<tr>
-				<td>name</td><td>date</td><td>kWh</td><td></td>
-			</tr>
-			<tr>
-				<!-- output -->
-				<!-- output next -->
-				<!-- TODO -->
-				<td>tom</td>
-				<td>15.06.2017</td>
-				<td>645kWh</td>
-			</tr>
-			<tr>
-				<td><form method="POST" action="addData"><input type="submit" value="add"class="button"/></form></td>
-			</tr>
 		</table>
+			<!-- display: option to typ in kWh -->
+		<form method="POST" action="addData">
+			<table>
+				<tr>
+					<!-- TODO how to work with the inout??? -->
+					<td>kWh: </td><td><input type="text"></td>
+					<td><input type="submit" value="add"class="button"/></td>
+				</tr>
+				<!-- display: typed in data -->
+				<tr>
+					<td>name</td><td>date</td><td>kWh</td><td></td>
+				</tr>
+				<tr>
+					<!-- output -->
+					<!-- output next -->
+					<!-- TODO -->
+					<td>tom</td>
+					<td>15.06.2017</td>
+					<td>645kWh</td>
+				</tr>
+			</table>
+		</form>
 		<div><!-- algin at the bottom -->
 			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 		</div>
