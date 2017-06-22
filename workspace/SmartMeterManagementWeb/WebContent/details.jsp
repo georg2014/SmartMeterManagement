@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%> 
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,15 +56,14 @@
 					<td>name</td><td>date</td><td>kWh</td><td></td>
 				</tr>
 				<!-- show all readings -->
-				<tr>
-					<!-- output -->
-					<!-- output next -->
-					<!-- TODO -->
-					<td>tom</td>
-					<td>15.06.2017</td>
-					<td>645kWh</td>
-				</tr>
-				
+				<c:forEach items="${readings}" var="reading">
+					<tr>
+						<!-- output -->
+						<td>${reading.benutzer}</td>
+						<td>${reading.zp}</td>
+						<td>${reading.kwh}</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</form>
 		<div><!-- algin at the bottom -->

@@ -31,7 +31,7 @@ public class Measurement {
 		double curr = Math.random()*smart.getMaxBelastung();
 		curr = curr*10;
 		Math.round(curr);
-		curr = curr/10;
+//		curr = curr/10;
 		return curr;
 	}
 

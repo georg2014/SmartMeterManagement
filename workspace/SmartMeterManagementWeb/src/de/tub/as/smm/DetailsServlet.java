@@ -43,6 +43,8 @@ public class DetailsServlet extends HttpServlet {
 		request.setAttribute("volt", mea.measureVolt());
 		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
 		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
+		
+		request.setAttribute("readings", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getAblesung());
 		//send details.jsp
 		request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
