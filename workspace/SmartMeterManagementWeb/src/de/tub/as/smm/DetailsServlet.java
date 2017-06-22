@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.tu.as.smm.statelessSessionBeans.Measurement;
+import de.tub.as.smm.dao.ReadingDao;
 import de.tub.as.smm.dao.SmartMeterDao;
-import de.tub.as.smm.dao.UserDao;
+import de.tub.as.smm.models.Reading;
 import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
 
@@ -27,16 +28,23 @@ public class DetailsServlet extends HttpServlet {
     @EJB
     Measurement mea;
     @EJB
-    UserDao userDao;
-    @EJB
     SmartMeterDao smartMeterDao;
-    
+    @EJB
+    ReadingDao readingDao;
 		  
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//get data from session
-		
+		// Handle new Reading
+		if(request.getSession().getAttribute("sessionUser") != null){
+			//user is logged in
+			String value = request.getParameter("value");
+			if(!value.equals(null) && !value.isEmpty() && value.matches("[0-9]{1,3}")){
+				User user = (User)request.getSession().getAttribute("sessionUser");
+				Double stand = Double.parseDouble(request.getParameter("value"));
+				readingDao.persist(new Reading((SmartMeter)request.getAttribute("deviceNumber"),user,stand));
+			}
+		}
 		
 		//setter
 		request.setAttribute("deviceNumber", request.getParameter("thisGK"));
@@ -56,6 +64,7 @@ public class DetailsServlet extends HttpServlet {
 		//get the device id
 		String thisGK = request.getParameter("thisGK");
 		
+		//TODO in use?
 		//save the device id as session for the smart meter
 		request.getSession().setAttribute("sessionSM", smartMeterDao.getMeterByGk(thisGK));
 		

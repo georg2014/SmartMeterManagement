@@ -48,8 +48,8 @@
 			<table>
 				<tr>
 					<!-- TODO how to work with the inout??? -->
-					<td>kWh: </td><td><input type="text"></td>
-					<td><input type="submit" value="add"class="button"/></td>
+					<td>kWh: </td><td><input type="text" name="value"></td>
+					<td><form method="GET" action="details"><input type="submit" value="add" class="button"/></form></td>
 				</tr>
 				<!-- display: typed in data -->
 				<tr>
