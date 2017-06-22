@@ -21,7 +21,7 @@
 		<class>de.tub.as.smm.models.SmartMeter</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 		</properties>
 	</persistence-unit>
 </persistence>

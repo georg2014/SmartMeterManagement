@@ -16,28 +16,49 @@ public class ReadingDao {
 	@PersistenceContext(name="primary")
 	private EntityManager em;
 
-	// Stores a new Reading:
+	
+	/**
+	 * Stores a new reading
+	 * @param read
+	 */
 	public void persist(Reading read) {
 		em.persist(read);
 	}
-
+	
+	
+	/**
+	 * Removes a reading with the matching id
+	 * @param id
+	 */
 	public void removeReading(Long id) {
 		
-		em.createQuery("DELETE r FROM Reading r WHERE r.id = id").executeUpdate();
+		em.createQuery("DELETE r FROM Reading r WHERE r.id = ?0")
+		.setParameter(0, id)
+		.executeUpdate();
 
 	}
+	
 
-	// Retrieves a reading with the matching id
+	/** 
+	 * Retrieves a reading with the matching id
+	 * 
+	 * @param id
+	 * @return Reading that matches the id
+	 */
 	public Reading getReadingById(Long id) {
 
-		Reading query = em.createQuery("SELECT u FROM Reading u WHERE u.id = id ", Reading.class)
-						  .getSingleResult();
+		Reading query = em.createQuery("SELECT u FROM Reading u WHERE u.id = ?0 ", Reading.class)
+						.setParameter(0, id)
+						.getSingleResult();
 
 		return query;
 
 	}
+	
 
-	// Retrieves all the Readings:
+	/**
+	 * @return All readings in the Database
+ 	 */
 	public List<Reading> getAllReadings() {
 		
 		TypedQuery<Reading> query = em.createQuery("SELECT u FROM Reading u ORDER BY u.id", Reading.class);
