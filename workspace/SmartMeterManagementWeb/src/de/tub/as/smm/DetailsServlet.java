@@ -49,9 +49,9 @@ public class DetailsServlet extends HttpServlet {
 		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
 		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
 		
-		SmartMeter sm = (SmartMeter)request.getSession().getAttribute("sessionSM");
-		User u = (User)request.getSession().getAttribute("sessionUser");
-		request.setAttribute("readings", smartMeterDao.getSpecificReadings(sm, u));
+//		SmartMeter sm = (SmartMeter)request.getSession().getAttribute("sessionSM");
+//		User u = (User)request.getSession().getAttribute("sessionUser");
+//		request.setAttribute("readings", smartMeterDao.getSpecificReadings(sm, u));
 		//send details.jsp
 		request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
@@ -60,15 +60,15 @@ public class DetailsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Handle new Reading
-		if(request.getSession().getAttribute("sessionUser") != null){
-			//user is logged in
-			String value = request.getParameter("value");
-			if(!value.equals(null) && !value.isEmpty() && value.matches("[0-9]{1,3}")){
-				User user = (User)request.getSession().getAttribute("sessionUser");
-				Double stand = Double.parseDouble(request.getParameter("value"));
-				readingDao.persist(new Reading((SmartMeter)request.getAttribute("deviceNumber"),user,stand));
-			}
-		}
+//		if(request.getSession().getAttribute("sessionUser") != null){
+//			//user is logged in
+//			String value = request.getParameter("value");
+//			if(!value.equals(null) && !value.isEmpty() && value.matches("[0-9]{1,3}")){
+//				User user = (User)request.getSession().getAttribute("sessionUser");
+//				Double stand = Double.parseDouble(request.getParameter("value"));
+//				readingDao.persist(new Reading((SmartMeter)request.getAttribute("deviceNumber"),user,stand));
+//			}
+//		}
 		
 		doGet(request, response);
 	}
