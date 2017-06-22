@@ -35,6 +35,30 @@ public class DetailsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// Handle the Details view
+		//get the device id
+		String thisGK = request.getParameter("thisGK");
+		
+		//TODO in use?
+		//save the device id as session for the smart meter
+		request.getSession().setAttribute("sessionSM", smartMeterDao.getMeterByGk(thisGK));
+		
+		//setter
+		request.setAttribute("deviceNumber", request.getParameter("thisGK"));
+		request.setAttribute("volt", mea.measureVolt());
+		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
+		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
+		
+		SmartMeter sm = (SmartMeter)request.getSession().getAttribute("sessionSM");
+		User u = (User)request.getSession().getAttribute("sessionUser");
+		request.setAttribute("readings", smartMeterDao.getSpecificReadings(sm, u));
+		//send details.jsp
+		request.getRequestDispatcher("/details.jsp").forward(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// Handle new Reading
 		if(request.getSession().getAttribute("sessionUser") != null){
 			//user is logged in
@@ -45,28 +69,6 @@ public class DetailsServlet extends HttpServlet {
 				readingDao.persist(new Reading((SmartMeter)request.getAttribute("deviceNumber"),user,stand));
 			}
 		}
-		
-		//setter
-		request.setAttribute("deviceNumber", request.getParameter("thisGK"));
-		request.setAttribute("volt", mea.measureVolt());
-		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
-		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
-		
-		request.setAttribute("readings", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getAblesung());
-		//send details.jsp
-		request.getRequestDispatcher("/details.jsp").forward(request, response);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// Handle the Details view
-		//get the device id
-		String thisGK = request.getParameter("thisGK");
-		
-		//TODO in use?
-		//save the device id as session for the smart meter
-		request.getSession().setAttribute("sessionSM", smartMeterDao.getMeterByGk(thisGK));
 		
 		doGet(request, response);
 	}

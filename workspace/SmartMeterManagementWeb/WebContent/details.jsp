@@ -49,7 +49,7 @@
 				<tr>
 					<!-- TODO how to work with the inout??? -->
 					<td>kWh: </td><td><input type="text" name="value"></td>
-					<td><form method="GET" action="details"><input type="submit" value="add" class="button"/></form></td>
+					<td><form method="POST" action="details"><input type="submit" value="add" class="button"/></form></td>
 				</tr>
 				<!-- display: typed in data -->
 				<tr>

@@ -46,7 +46,7 @@
 
 			<c:forEach items="${meterList}" var="meter">
 				<hr>
-					<form method="POST" action="details">
+					<form method="GET" action="details">
 						<p><img src="sm1.jpg" alt="Smart Meter" width="20%"></p>
 						<p>Gerätekennung :</p>
 						<p>${meter.geraeteKennung}</p>
