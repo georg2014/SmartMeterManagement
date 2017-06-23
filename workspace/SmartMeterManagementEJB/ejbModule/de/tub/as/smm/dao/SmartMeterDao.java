@@ -75,7 +75,7 @@ public class SmartMeterDao {
 	 * @return
 	 */
 	public SmartMeter getMeterByGk(String gk) {
-		SmartMeter query = em.createQuery("SELECT u FROM SmartMeter u WHERE u.geraeteKennung = ?0", SmartMeter.class)
+		SmartMeter query = em.createQuery("SELECT s FROM SmartMeter s WHERE s.geraeteKennung = ?0", SmartMeter.class)
 				.setParameter(0, gk)
 				.getSingleResult();
 		return query;
@@ -91,17 +91,16 @@ public class SmartMeterDao {
 	}
 	
 	/**
-	 * Returns all the SmartMeters that 
+	 * Returns all the SmartMeters that belong to the logged in user and the clicked on Smart Meter
 	 * 
 	 * @param sm SmartMeter the reading was taken from
 	 * @param u User that created the reading
 	 * @return Readings that were created by this user on this SmartMeter
 	 */
 	public List<Reading> getSpecificReadings(SmartMeter sm, User u) {
-		List<Reading> query = em
-				.createQuery("SELECT r FROM Reading r WHERE r.gereat.id = ?0.id AND WHERE r.benutzer.id = ?1.id",Reading.class)
-				.setParameter(0, sm)
-				.setParameter(1, u)
+		List<Reading> query = em.createQuery("SELECT r FROM Reading r WHERE r.geraet.id = ?0 AND r.benutzer.id = ?1",Reading.class)
+				.setParameter(0, sm.getId())
+				.setParameter(1, u.getId())
 				.getResultList();
 		return query;
 	}

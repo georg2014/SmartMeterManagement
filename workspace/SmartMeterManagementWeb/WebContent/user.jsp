@@ -36,7 +36,7 @@
 				value="Sign in" />
 		</form>
 		<p>
-			You are logged in as : <b>${loggedInUser}</b>
+			You are logged in as : <b>${loggedInUser.name}</b>
 		</p>
 		<form method="GET" action="home">
 			<input type="submit" value="Go to Smart Meter Overview">
@@ -51,9 +51,14 @@
 
 		<hr>
 
+		<p></p>
+
 		<table>
 			<tr>
 
+				<td>
+					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+				</td>
 				<td>
 					<form method="GET" action="logout">
 						<input type="submit" value="Logout" />
@@ -61,10 +66,6 @@
 				</td>
 			</tr>
 		</table>
-		<div>
-			<p style="position: relativ; bottom: 0; padding: 12;">made by
-				Leon, Jakob, Jonas and Georg (Gruppe E)</p>
-		</div>
 	</div>
 </body>
 </html>
