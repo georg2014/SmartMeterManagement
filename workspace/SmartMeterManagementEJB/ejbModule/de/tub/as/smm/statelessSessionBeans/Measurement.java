@@ -1,4 +1,4 @@
-package de.tu.as.smm.statelessSessionBeans;
+package de.tub.as.smm.statelessSessionBeans;
 
 import javax.ejb.Stateless;
 
@@ -19,6 +19,7 @@ public class Measurement {
 		
 		
 		double volt = Math.random()*20+220;
+		volt = volt*10;
 		volt = Math.round(volt);
 		volt = volt/10;
 		return volt;

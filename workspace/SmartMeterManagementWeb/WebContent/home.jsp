@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%>
+<%@page import="java.util.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,7 +18,7 @@
 	
 		<div class="header">
 			<h1>Smart Meters Management</h1>
-			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
+			<h4>Anwendungssysteme Task 2 SS 2017</h4>
 		</div>
 		<p></p>
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
@@ -36,10 +35,24 @@
 
 		<form method="POST" action="home">
 			Has to be like => AB12345678 <br> Gerätekennung: <input
-				type="text" name="gk" /> <br> <br> Between 50A and 100A <br>
+				type="text" name="gk"/> <br> <br> Between 50A and 100A <br>
 			Max strain in Ampere: <input type="text" name="max" /> <br> <br>
-			<input type="submit" value="Add Smart Meter" /> <br>
+			<input type="submit" value="Add Smart Meter" class="btn"/> <br>
 		</form>
+		<!-- ErrorMsg: Geraetekennung or Max strain Input Wrong -->
+		<script type="text/javascript">
+			var Msg = '<%=session.getAttribute("isNoValidSM")%>' ;
+			if(Msg == "1"){
+				function alertName(){
+					alert("Please enter Max strain like 99(only numbers) to add Smart Meter.");
+				}
+			}else if(Msg == "2"){
+				function alertName(){
+					alert("Please enter Max strain like 99(only numbers between 50-100) and Geraetekennung like GG8888888(two letters and directly after them 8 numbers) to add Smart Meter.");
+				}
+			}
+			window.onload = alertName;
+		</script>
 		
 		<p></p>
 
@@ -49,20 +62,19 @@
 				<p>
 					<img src="sm1.jpg" alt="Smart Meter" width="20%">
 				</p>
-				<p>Gerätekennung :</p>
+				<p>Geraetekennung :</p>
 				<p>${meter.geraeteKennung}</p>
 				<input type="hidden" name="thisGK" value="${meter.geraeteKennung}" />
 				<!-- to go to the details view of the current smart meter -->
-				<input type="submit" value="Go To Details" />
+				<input type="submit" value="Go To Details"  class="btn"/>
 			</form>
 		</c:forEach>
 		
 		<hr>
 		<p></p>
 		
-		<table>
+		<table class="footer">
 			<tr>
-
 				<td>
 					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 				</td>
