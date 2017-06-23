@@ -53,6 +53,7 @@ public class DetailsServlet extends HttpServlet {
 		// setter
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		request.setAttribute("volt", mVolt);
 		request.setAttribute("curr", mCurr);
 =======
@@ -60,6 +61,10 @@ public class DetailsServlet extends HttpServlet {
 <<<<<<< HEAD
 		request.setAttribute("curr", mea.measureCurr(currentSM));
 >>>>>>> parent of 66a3620... Die Warnungmeldungen auf den Seiten fehlen noch
+=======
+		request.setAttribute("volt", mea.measureVolt());
+		request.setAttribute("curr", mea.measureCurr(currentSM));
+>>>>>>> parent of aa27d84... Serverlet polish
 =======
 		request.setAttribute("volt", mea.measureVolt());
 		request.setAttribute("curr", mea.measureCurr(currentSM));
@@ -109,6 +114,7 @@ public class DetailsServlet extends HttpServlet {
 				session.setAttribute("isWrongValue", "1");//alter wrong input
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 		} else {
 			
@@ -116,6 +122,17 @@ public class DetailsServlet extends HttpServlet {
 =======
 		}else{
 			session.setAttribute("isWrongValue", "1");//alter wrong input
+=======
+		}else{
+			session.setAttribute("isWrongValue", "1");//alter wrong input
+		}
+		
+		//Handle To High Voltage Error
+		if(mea.isOverMax(currentSM, currentSM.getMaxBelastung())){
+			session.setAttribute("isToHigh", "1");
+		}else{
+			session.setAttribute("isToHigh", "0");
+>>>>>>> parent of aa27d84... Serverlet polish
 		}
 		
 		//Handle To High Voltage Error

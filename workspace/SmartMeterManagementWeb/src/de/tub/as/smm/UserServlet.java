@@ -73,6 +73,7 @@ public class UserServlet extends HttpServlet {
 			}
 		}else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			//TODO no final version!!!
 			session.setAttribute("isWrongName", "2");
 			userDao.persist(new User("trick"));
@@ -80,6 +81,8 @@ public class UserServlet extends HttpServlet {
 			userDao.persist(new User("track"));
 //			session.setAttribute("isWrongName", "1");//alter wrong input
 =======
+=======
+>>>>>>> parent of aa27d84... Serverlet polish
 			//name is null or not empty or maches charackters(all inputs are letters)
 			session.setAttribute("isWrongName", "1");//alter wrong input
 >>>>>>> parent of aa27d84... Serverlet polish
