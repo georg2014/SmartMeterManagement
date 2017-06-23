@@ -53,10 +53,8 @@ table{
 	width: 50%;
 }
 
-.button {
+.btn {
 	align-conten:center;
 	background-color: darkblue;
 	color: white;
-	padding: 15px 32px;
-	margin: 4px 2px;
 }

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%@ page import="java.util.*,de.tub.as.smm.models.User"%>
+<%@ page import="java.util.*"%>
 
 <!-- the first page you see as user -->
 
@@ -13,7 +12,6 @@
 <title>SMM</title>
 <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
 <link href="stylesheet.css" rel="stylesheet" type="text/css">
-<link href="alert.js" rel="alert" type="text/javascript">
 </head>
 
 <body>
@@ -22,7 +20,7 @@
 
 		<div class="header">
 			<h1>Smart Meters Management</h1>
-			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
+			<h4>Anwendungssysteme Task 2 SS 2017</h4>
 		</div>
 
 
@@ -34,13 +32,13 @@
 		</p>
 		<form method="POST" action="user">
 			Name: <input type="text" name="name" /> <input type="submit"
-				value="Sign in" />
+				value="Sign in"  class="btn"/>
 		</form>
 		<p>
 			You are logged in as : <b>${loggedInUser.name}</b>
 		</p>
 		<form method="GET" action="home">
-			<input type="submit" value="Go to Smart Meter Overview">
+			<input type="submit" value="Go to Smart Meter Overview" class="btn">
 		</form>
 		<!-- ErrorMsg: Name Input Wrong -->
 		<script type="text/javascript">
@@ -70,7 +68,7 @@
 				</td>
 				<td>
 					<form method="GET" action="logout">
-						<input type="submit" value="Logout" />
+						<input type="submit" value="Logout"  class="btn"/>
 					</form>
 				</td>
 			</tr>

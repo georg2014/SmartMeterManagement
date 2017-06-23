@@ -18,26 +18,17 @@
 	
 		<div class="header">
 			<h1>Smart Meters Management</h1>
-			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
+			<h4>Anwendungssysteme Task 2 SS 2017</h4>
 		</div>
 		
 		<p></p>
 		
 		<!-- table where you can see the Smart Meter and go home -->
-		<table class=tableDefault>
+		<table>
 			<tr>
 				<td><form method="get" action="home">
-						<input type="submit" value="Smart Meter Overview" class="button" />
+						<input type="submit" value="Smart Meter Overview"/>
 					</form>
-					<script type="text/javascript">
-						var Msg = '<%=session.getAttribute("isWrongValue")%>' ;
-						if(Msg == "1"){
-							function alertName(){
-								alert("Please enter value like 1000(only numbers) to add reading.");
-							}
-						}
-						window.onload = alertName;
-					</script>
 					</td>
 			</tr>
 			<!-- display: id volt amper and strain -->
@@ -68,11 +59,24 @@
 			
 			<form method="POST" action="details">
 				<input type="text" name="value"> <input type="submit"
-					value="add" class="button" />
+					value="Add"  class="btn"/>
 			</form>
+			<script type="text/javascript">
+				var Msg = '<%=session.getAttribute("isWrongValue")%>' ;
+				if(Msg == "1"){
+					function alertName(){
+						alert("Please enter value like 1000(only numbers) to add reading.");
+					}
+				}
+				Msg = '<%=session.getAttribute("isToHigh")%>';
+				if(Msg == "1"){
+					function alertName(){
+						alert("Alert: Voltage is to high!");
+					}
+				}
+				window.onload = alertName;
+			</script>
 			
-			
-
 			<table>
 				<!-- display: typed in data -->
 				<tr>
@@ -105,7 +109,7 @@
 				</td>
 				<td>
 					<form method="GET" action="logout">
-						<input type="submit" value="Logout" />
+						<input type="submit" value="Logout"  class="btn"/>
 					</form>
 				</td>
 			</tr>
