@@ -80,15 +80,22 @@ public class DetailsServlet extends HttpServlet {
 		if (!(currentU == null)) {
 			//check for valid inputs
 			if (request.getParameter("value").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				request.getSession().setAttribute("isWrongValue", "0");//no alter
+				session.setAttribute("isWrongValue", "0");//no alter
 				Double stand = Double.parseDouble(request.getParameter("value"));
 				//add reading to the reading database
 				rDao.persist(new Reading(currentSM, currentU, stand));
 			}else{
-				request.getSession().setAttribute("isWrongValue", "1");//alter wrong input
+				session.setAttribute("isWrongValue", "1");//alter wrong input
 			}
 		}else{
-			request.getSession().setAttribute("isWrongValue", "1");//alter wrong input
+			session.setAttribute("isWrongValue", "1");//alter wrong input
+		}
+		
+		//Handle To High Voltage Error
+		if(mea.isOverMax(currentSM, currentSM.getMaxBelastung())){
+			session.setAttribute("isToHigh", "1");
+		}else{
+			session.setAttribute("isToHigh", "0");
 		}
 
 		doGet(request, response);

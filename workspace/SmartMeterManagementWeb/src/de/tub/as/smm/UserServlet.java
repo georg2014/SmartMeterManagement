@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
 		//check input: name is not null and not empty and maches charackters(all inputs are letters)
 		if (!name.equals(null) && !name.isEmpty() && name.chars().allMatch(c -> Character.isLetter(c))) {
 			//if name is not null and not empty and maches charackters(all inputs are letters)
-			request.getSession().setAttribute("isWrongName", "0");//no alter
+			session.setAttribute("isWrongName", "0");//no alter
 			boolean userIsNew = true;
 			//go through all users that exsists in the database
 			for (User user : userDao.getAllUsers()) {
@@ -73,7 +73,7 @@ public class UserServlet extends HttpServlet {
 			}
 		}else{
 			//name is null or not empty or maches charackters(all inputs are letters)
-			request.getSession().setAttribute("isWrongName", "1");//alter wrong input
+			session.setAttribute("isWrongName", "1");//alter wrong input
 		}
 		doGet(request, response);
 	}
