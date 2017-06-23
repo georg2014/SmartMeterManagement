@@ -47,6 +47,11 @@
 					alert("Please enter name like tom(only letters) to log in.");
 				}
 			}
+			if(Msg == "2"){
+				function alertName(){
+					alert("This is the Admin version where you are allready logged in and some SM are there!");
+				}
+			}
 			window.onload = alertName;
 		</script>
 		<hr>

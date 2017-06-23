@@ -80,8 +80,12 @@ public class UserServlet extends HttpServlet {
 				session.setAttribute("sessionUser", userDao.getUserByName(name));
 			}
 		}else{
-			
-			session.setAttribute("isWrongName", "1");//alter wrong input
+			//TODO no final version!!!
+			session.setAttribute("isWrongName", "2");
+			userDao.persist(new User("trick"));
+			userDao.persist(new User("tick"));
+			userDao.persist(new User("track"));
+//			session.setAttribute("isWrongName", "1");//alter wrong input
 		}
 		doGet(request, response);
 	}

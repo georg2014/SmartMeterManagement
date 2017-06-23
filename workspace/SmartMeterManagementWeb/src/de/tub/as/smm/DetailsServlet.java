@@ -101,7 +101,12 @@ public class DetailsServlet extends HttpServlet {
 			}
 			
 		} else {
-			session.setAttribute("isWrongValue", "1");// alter wrong input
+			//TODO no final version!!!
+			rDao.persist(new Reading(currentSM, currentU, 3465.));
+			rDao.persist(new Reading(currentSM, currentU, 345.26));
+			rDao.persist(new Reading(currentSM, currentU, 90865.));
+			
+//			session.setAttribute("isWrongValue", "1");// alter wrong input
 		}
 
 		doGet(request, response);
