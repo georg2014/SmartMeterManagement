@@ -23,24 +23,13 @@
 		
 		<p></p>
 		
-		<!-- smart meter values -->
-		<div id="imgtxt2">${volt} volt</div>
-		<div id="imgtxt1">${curr} amper</div>
-		
 		<!-- table where you can see the Smart Meter and go home -->
-		<table class="tbl">
+		<table>
 			<tr>
 				<td><form method="get" action="home">
-						<input type="submit" value="Smart Meter Overview" class="btn"/>
+						<input type="submit" value="Smart Meter Overview"/>
 					</form>
-				</td>
-				<td>
-				</td>
-				<td>
-					<form method="GET" action="logout">
-						<input type="submit" value="Logout"  class="btn"/>
-					</form>
-				</td>
+					</td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
@@ -63,35 +52,41 @@
 				</td>
 			</tr>
 		</table>
-		<form method="POST" action="details">
-			kWh:<input type="text" name="value" style="width: 20%; algin: center;">
-			<input type="submit" value="Add" class="btn" style="width: 20%; algin:center;"/>
-		</form>
-		<script type="text/javascript">
-			var Msg = '<%=session.getAttribute("isWrongValue")%>' ;
-			if(Msg == "1"){
-				function alertName(){
-					alert("Please enter value like 1000(only numbers) to add reading.");
+
+
+			kWh:
+			
+			
+			<form method="POST" action="details">
+				<input type="text" name="value"> <input type="submit"
+					value="Add"  class="btn"/>
+			</form>
+			<script type="text/javascript">
+				var Msg = '<%=session.getAttribute("isWrongValue")%>' ;
+				if(Msg == "1"){
+					function alertName(){
+						alert("Please enter value like 1000(only numbers) to add reading.");
+					}
 				}
-			}
-			Msg = '<%=session.getAttribute("isToHigh")%>';
-			if(Msg == "1"){
-				function alertName(){
-					alert("Alert: Voltage is to high!");
+				Msg = '<%=session.getAttribute("isToHigh")%>';
+				if(Msg == "1"){
+					function alertName(){
+						alert("Alert: Voltage is to high!");
+					}
 				}
-			}
-			window.onload = alertName;
-		</script>
-		
-		<table>
+				window.onload = alertName;
+			</script>
+			
+			<table>
 				<!-- display: typed in data -->
 				<tr>
-					<th>name</th>
-					<th>date</th>
-					<th>kWh</th>
+					<td>name</td>
+					<td>date</td>
+					<td>kWh</td>
 				</tr>
 				<!-- show all readings -->
 				<c:forEach items="${readingList}" var="reading">
+					<hr>
 					<tr>
 						<!-- output -->
 						<td>${reading.benutzer}</td>
@@ -99,15 +94,23 @@
 						<td>${reading.kwh}</td>
 					</tr>
 				</c:forEach>
-		</table>
+			</table>
 			
+			<hr>
 			
-		<p></p>
+			<p></p>
 			
-		<table class="footer">
+			<table>
+			
 			<tr>
+
 				<td>
 					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+				</td>
+				<td>
+					<form method="GET" action="logout">
+						<input type="submit" value="Logout"  class="btn"/>
+					</form>
 				</td>
 			</tr>
 		</table>

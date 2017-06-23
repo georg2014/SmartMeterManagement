@@ -6,15 +6,6 @@
 
 .header {
 	top: 0;
-	width: 96%;
-	padding: 20px;
-	color: white;
-	background-color: black;
-	text-align: center;
-}
-
-.footer {
-	top: 0;
 	width: 100%;
 	padding: 20px;
 	color: white;
@@ -27,68 +18,43 @@ body, html {
 	margin: center;
 }
 
+table{
+	margin:center;
+	position:relative;
+	text-align:center;
+	content-align:center;
+}
+
 .bg {
 	/* The image used */
 	background-image:
 		url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
+	/* Full height and width */
+	height: 100%;
+	width: 100%;
 	/* Center and scale the image nicely */
 	background-position: center;
 	background-repeat: repeat;
 	background-size: cover;
+	/*make the position absolut*/
+	position: absolute;
+	top: 0;
+	left: 0;
 	/*make it transparent*/
 	opacity: 0.5;
 }
 
 .fg {
 	/*make the position absolut before the bg and no opacity*/
-	top: 0;
-	width: 90%;
 	padding: 20px;
-	algin: center;
 	position: absolute;
+	top: 0;
+	left: 25%;
+	width: 50%;
 }
 
 .btn {
 	align-conten:center;
 	background-color: darkblue;
 	color: white;
-}
-
-.tbl {
-	width = 30%;
-}
-
-/*Table with slim boarder over the hole size*/
-table{
-	width: 100%;
-	border-collapse: collapse;
-	padding: 5px;
-	color: black;
-	background-color: white;
-	text-align: center;
-}
-
-/*boarder for each cell*/
-tr,th,td{
-	border: 1px solid black;
-	algin: center;
-}
-
-
-
-/*Text/value are shown on the smart meter picture ;)*/
-#imgtxt2{
-	font-size: 90%;
-	position: absolute;
-	top: 330px;
-	left: 115px;
-	width: 100%;
-}
-
-#imgtxt1{
-	font-size: 90%;
-	position: absolute;
-	top: 350px;
-	left: 115px;
-	width: 100%;
 }
