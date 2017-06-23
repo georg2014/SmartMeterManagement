@@ -11,6 +11,7 @@ import de.tub.as.smm.models.SmartMeter;
 public class Measurement {
 	
 	/**
+<<<<<<< HEAD
 	 *Die Spannung(Genauigkeit: 0.1 Volt)
 	 *soll zwischen 220 und 240 Volt liegen
 	 * @return
@@ -21,12 +22,22 @@ public class Measurement {
 		double volt = Math.random()*20+220;
 		volt = volt*10;
 		volt = Math.round(volt);
+=======
+		Die Spannung(Genauigkeit: 0.1 Volt)
+		soll zwischen 220 und 240 Volt liegen*/
+	public double measureVolt(){
+		
+		double volt = Math.random()*20;
+		volt = (volt+220)*10;
+		Math.round(volt);
+>>>>>>> origin/GeorgsZweigAufgabe2
 		volt = volt/10;
 		return volt;
 		
 	}
 	
 	/**
+<<<<<<< HEAD
 	 *Die Stromstärke (Genauigkeit: 0.1 Ampere) liegt
 	 *zwischen 0 und (der jeweiligen maximalen Belastung +5 Ampere)
 	 * @param smart
@@ -34,6 +45,12 @@ public class Measurement {
 	 */
 	public double measureCurr(SmartMeter smart){
 		
+=======
+		die Stromstärke (Genauigkeit: 0.1 Ampere) 
+		zwischen 0 und (der jeweiligen maximalen Belastung 
+		+5 Ampere) */
+	public double measureCurr(SmartMeter smart){
+>>>>>>> origin/GeorgsZweigAufgabe2
 		double curr = Math.random()*smart.getMaxBelastung();
 		curr = curr*10;
 		curr = Math.round(curr);

@@ -54,8 +54,14 @@ public class DetailsServlet extends HttpServlet {
 		Double mVolt = mea.measureVolt();
 		
 		// setter
+<<<<<<< HEAD
 		request.setAttribute("volt", mVolt);
 		request.setAttribute("curr", mCurr);
+=======
+		request.setAttribute("volt", mea.measureVolt());
+<<<<<<< HEAD
+		request.setAttribute("curr", mea.measureCurr(currentSM));
+>>>>>>> parent of 66a3620... Die Warnungmeldungen auf den Seiten fehlen noch
 		request.setAttribute("max", currentSM.getMaxBelastung());
 
 		// Handle To High Voltage Error
@@ -70,6 +76,15 @@ public class DetailsServlet extends HttpServlet {
 		}
 
 		// send details.jsp
+=======
+		request.setAttribute("curr", mea.measureCurr(smartMeterDao.getMeterByGk(request.getParameter("thisGK"))));
+		request.setAttribute("max", smartMeterDao.getMeterByGk(request.getParameter("thisGK")).getMaxBelastung());
+		
+//		SmartMeter sm = (SmartMeter)request.getSession().getAttribute("sessionSM");
+//		User u = (User)request.getSession().getAttribute("sessionUser");
+//		request.setAttribute("readings", smartMeterDao.getSpecificReadings(sm, u));
+		//send details.jsp
+>>>>>>> origin/GeorgsZweigAufgabe2
 		request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
 
@@ -87,6 +102,7 @@ public class DetailsServlet extends HttpServlet {
 		System.out.println(currentU);
 
 		// Handle new Reading
+<<<<<<< HEAD
 		if (!(currentU == null)) {
 			
 			// check for valid inputs
@@ -109,6 +125,18 @@ public class DetailsServlet extends HttpServlet {
 		rDao.persist(new Reading(currentSM, currentU, 345.26));
 		rDao.persist(new Reading(currentSM, currentU, 90865.));
 
+=======
+//		if(request.getSession().getAttribute("sessionUser") != null){
+//			//user is logged in
+//			String value = request.getParameter("value");
+//			if(!value.equals(null) && !value.isEmpty() && value.matches("[0-9]{1,3}")){
+//				User user = (User)request.getSession().getAttribute("sessionUser");
+//				Double stand = Double.parseDouble(request.getParameter("value"));
+//				readingDao.persist(new Reading((SmartMeter)request.getAttribute("deviceNumber"),user,stand));
+//			}
+//		}
+		
+>>>>>>> origin/GeorgsZweigAufgabe2
 		doGet(request, response);
 	}
 
