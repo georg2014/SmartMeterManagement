@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import de.tu.as.smm.statelessSessionBeans.Measurement;
 import de.tub.as.smm.dao.ReadingDao;
 import de.tub.as.smm.dao.SmartMeterDao;
 import de.tub.as.smm.models.Reading;
 import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
+import de.tub.as.smm.statelessSessionBeans.Measurement;
 
 /**
  * Servlet implementation class DetailsServlet
@@ -66,21 +66,29 @@ public class DetailsServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		//make a new session
 		HttpSession session = request.getSession();
-
+		//get smart meter from session and user
 		SmartMeter currentSM = (SmartMeter) session.getAttribute("deviceNumber");
 		User currentU = (User) session.getAttribute("sessionUser");
-
+		
+		//debug print outs
 		System.out.println(currentSM);
 		System.out.println(currentU);
 
 		// Handle new Reading
 		if (!(currentU == null)) {
+			//check for valid inputs
 			if (request.getParameter("value").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+				request.getSession().setAttribute("isWrongValue", "0");//no alter
 				Double stand = Double.parseDouble(request.getParameter("value"));
+				//add reading to the reading database
 				rDao.persist(new Reading(currentSM, currentU, stand));
+			}else{
+				request.getSession().setAttribute("isWrongValue", "1");//alter wrong input
 			}
+		}else{
+			request.getSession().setAttribute("isWrongValue", "1");//alter wrong input
 		}
 
 		doGet(request, response);

@@ -40,6 +40,20 @@
 			Max strain in Ampere: <input type="text" name="max" /> <br> <br>
 			<input type="submit" value="Add Smart Meter" /> <br>
 		</form>
+		<!-- ErrorMsg: Geraetekennung or Max strain Input Wrong -->
+		<script type="text/javascript">
+			var Msg = '<%=session.getAttribute("isNoValidSM")%>' ;
+			if(Msg == "1"){
+				function alertName(){
+					alert("Please enter Max strain like 99(only numbers) to add Smart Meter.");
+				}
+			}else if(Msg == "2"){
+				function alertName(){
+					alert("Please enter Max strain like 99(only numbers between 50-100) and Geraetekennung like GG8888888(two letters and directly after them 8 numbers) to add Smart Meter.");
+				}
+			}
+			window.onload = alertName;
+		</script>
 		
 		<p></p>
 
@@ -49,7 +63,7 @@
 				<p>
 					<img src="sm1.jpg" alt="Smart Meter" width="20%">
 				</p>
-				<p>Gerätekennung :</p>
+				<p>Geraetekennung :</p>
 				<p>${meter.geraeteKennung}</p>
 				<input type="hidden" name="thisGK" value="${meter.geraeteKennung}" />
 				<!-- to go to the details view of the current smart meter -->

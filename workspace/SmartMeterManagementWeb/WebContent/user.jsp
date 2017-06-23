@@ -13,6 +13,7 @@
 <title>SMM</title>
 <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
 <link href="stylesheet.css" rel="stylesheet" type="text/css">
+<link href="alert.js" rel="alert" type="text/javascript">
 </head>
 
 <body>
@@ -41,7 +42,16 @@
 		<form method="GET" action="home">
 			<input type="submit" value="Go to Smart Meter Overview">
 		</form>
-
+		<!-- ErrorMsg: Name Input Wrong -->
+		<script type="text/javascript">
+			var Msg = '<%=session.getAttribute("isWrongName")%>' ;
+			if(Msg == "1"){
+				function alertName(){
+					alert("Please enter name like tom(only letters) to log in.");
+				}
+			}
+			window.onload = alertName;
+		</script>
 		<hr>
 		<p>Signed in users:</p>
 		<c:forEach items="${userList}" var="user">
@@ -55,7 +65,6 @@
 
 		<table>
 			<tr>
-
 				<td>
 					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 				</td>

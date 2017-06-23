@@ -28,7 +28,17 @@
 			<tr>
 				<td><form method="get" action="home">
 						<input type="submit" value="Smart Meter Overview" class="button" />
-					</form></td>
+					</form>
+					<script type="text/javascript">
+						var Msg = '<%=session.getAttribute("isWrongValue")%>' ;
+						if(Msg == "1"){
+							function alertName(){
+								alert("Please enter value like 1000(only numbers) to add reading.");
+							}
+						}
+						window.onload = alertName;
+					</script>
+					</td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
