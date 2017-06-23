@@ -73,9 +73,8 @@
 		<hr>
 		<p></p>
 		
-		<table>
+		<table class="footer">
 			<tr>
-
 				<td>
 					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
 				</td>
