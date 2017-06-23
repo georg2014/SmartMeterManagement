@@ -13,23 +13,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/user.jsp").forward(request, response);
+		request.getSession().invalidate();
+		request.getRequestDispatcher("/user").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Cookie [] cookies = request.getCookies();
-		if(cookies != null){
-			for (Cookie cookie : cookies) {
-			     if ("loggedInUser".equals(cookie.getName())) {
-			    	 cookie.setValue(null);
-			     }
-			}
-		}
 		doGet(request, response);
 	}
 

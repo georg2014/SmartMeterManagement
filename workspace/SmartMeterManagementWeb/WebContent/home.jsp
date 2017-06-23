@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%> 
-   
+<%@page import="java.util.*,de.tub.as.smm.models.SmartMeter"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,43 +16,77 @@
 <body>
 	<div class="bg"></div>
 	<div class="fg">
-		<h1> Smart Meters Management </h1>
-		<h4 class="active"> Anwendungssysteme Task 2 SS 2017</h4>
+	
+		<div class="header">
+			<h1>Smart Meters Management</h1>
+			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
+		</div>
+		<p></p>
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
-		<table style="color:grey">
-			
-			<tr><th>User:</th><th><% %></th><th></th><form method="POST" action="logout"><input type="submit" value="logout"/></form></tr>
-			<tr><th>Navigation</th></tr>
+
+
+
+		<p>
+			Logged in as: <big>${loggedInUser.name}</big>
+		</p>
+
+		<p></p>
+
+
+
+		<form method="POST" action="home">
+			Has to be like => AB12345678 <br> Gerätekennung: <input
+				type="text" name="gk" /> <br> <br> Between 50A and 100A <br>
+			Max strain in Ampere: <input type="text" name="max" /> <br> <br>
+			<input type="submit" value="Add Smart Meter" /> <br>
+		</form>
+		<!-- ErrorMsg: Geraetekennung or Max strain Input Wrong -->
+		<script type="text/javascript">
+			var Msg = '<%=session.getAttribute("isNoValidSM")%>' ;
+			if(Msg == "1"){
+				function alertName(){
+					alert("Please enter Max strain like 99(only numbers) to add Smart Meter.");
+				}
+			}else if(Msg == "2"){
+				function alertName(){
+					alert("Please enter Max strain like 99(only numbers between 50-100) and Geraetekennung like GG8888888(two letters and directly after them 8 numbers) to add Smart Meter.");
+				}
+			}
+			window.onload = alertName;
+		</script>
+		
+		<p></p>
+
+		<c:forEach items="${meterList}" var="meter">
+			<hr>
+			<form method="GET" action="details">
+				<p>
+					<img src="sm1.jpg" alt="Smart Meter" width="20%">
+				</p>
+				<p>Geraetekennung :</p>
+				<p>${meter.geraeteKennung}</p>
+				<input type="hidden" name="thisGK" value="${meter.geraeteKennung}" />
+				<!-- to go to the details view of the current smart meter -->
+				<input type="submit" value="Go To Details" />
+			</form>
+		</c:forEach>
+		
+		<hr>
+		<p></p>
+		
+		<table>
 			<tr>
-				<!-- this should only be possible for a logged in user -->
-				<td><form method="POST" action="logout"><input type="submit" value="Logout" class="button"/></form></td>
-				<td><form method="POST" action="addSM"><input type="submit" value="add Smart Meter" class="button"/></form></td>
-				<td><p>ID(AB14658341):<input type="text" value="smartmeterGK"/></p>
-					<p>max strain(from x to y):<input type="text" value="smartmeterMB"/></p></td>
-			</tr>
-			<tr>
-			<%
-			@SuppressWarnings("unchecked")
-			List<SmartMeter> smmes = (List<SmartMeter>) request.getAttribute("smartmeter");
-			if(smmes != null){
-				for(SmartMeter smme : smmes){
-					//TODO how do I know which sm I wanna see the details of ?
-							//somehow we need to give some information within the request
-								//as cookie thisSM with the value of the gk would be great
-					%>			
-					<td></td>
-						<td>
-							<p><%=smme.getGeraeteKennung()%></p>
-							<img src="sm1.jpg" alt="Smart Meter" width="30%">
-						</td>
-					<td><form method="POST" action="details"><input type="submit" value="details"/></form></td>			
-				<%} 
-			}%>
+
+				<td>
+					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+				</td>
+				<td>
+					<form method="GET" action="logout">
+						<input type="submit" value="Logout" />
+					</form>
+				</td>
 			</tr>
 		</table>
-		<div><!-- algin at the bottom -->
-			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
-		</div>
 	</div>
 </body>
 </html>

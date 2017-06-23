@@ -6,10 +6,10 @@ import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import de.tub.as.smm.dao.UserDao;
 import de.tub.as.smm.models.User;
@@ -20,68 +20,61 @@ import de.tub.as.smm.models.User;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	
 	// Injected DAO EJB:
-    @EJB
-    UserDao userDao;
- 
-    @Override
-    protected void doGet(
-        HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    	// Display the list of guests:
-        request.setAttribute("user", userDao.getAllUsers());
-        
-        for(User u : userDao.getAllUsers()){
-        	System.out.println(u);
-        }
-        
-        request.getRequestDispatcher("/user.jsp").forward(request, response);
- 		
-    }
- 
-    @Override
-    protected void doPost(
-        HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
- 
-        // Handle a new guest:
-        String name = request.getParameter("name");
-        if (name != null && name.chars().allMatch(Character::isLetter)){
-        	//src=https://stackoverflow.com/questions/5238491/check-if-string-contains-only-letters
-        	
-        	//no doubles
-        	boolean userIsNew = true;
-        	List<User> users = userDao.getAllUsers();
-        	for (User user : users) {
-        		if(name == user.getName()){
-        			userIsNew = false;
-        			//log in as old user
-        			//loggedInUser = userDao.getUserByName(name);
-        			//tell that see user.jsp line 69
-        		}
-        	}
-        	if(userIsNew){
-        		userDao.persist(new User(name));
-//    			loggedInUser = user.getUserByName(name);
-        	}
-        }
-        
-        //add user cookie to know which user is logged in
-        Cookie [] cookies = request.getCookies();
-		if(cookies != null){
-			for (Cookie cookie : cookies) {
-			     if ("loggedInUser".equals(cookie.getName())) {
-			    	 cookie.setValue(name);
-			     }
+	@EJB
+	UserDao userDao;
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("sessionUser") != null){
+			request.setAttribute("loggedInUser", session.getAttribute("sessionUser"));
+		}
+		
+		// Display the list of guests:
+		List<User> userList = userDao.getAllUsers();
+		request.setAttribute("userList", userList);
+		request.getRequestDispatcher("/user.jsp").forward(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		/**Handle a new guest:**/
+		//get the input from the user.jsp
+		String name = request.getParameter("name");
+		//check input: name is not null and not empty and maches charackters(all inputs are letters)
+		if (!name.equals(null) && !name.isEmpty() && name.chars().allMatch(c -> Character.isLetter(c))) {
+			//if name is not null and not empty and maches charackters(all inputs are letters)
+			request.getSession().setAttribute("isWrongName", "0");//no alter
+			boolean userIsNew = true;
+			//go through all users that exsists in the database
+			for (User user : userDao.getAllUsers()) {
+				//check if the input is a name that already exsists in the database
+				if (name.equals(user.getName())){
+					//if the name already exsists the user is not new
+					userIsNew = false;
+					//log in the user as the exsisting user via session
+					session.setAttribute("sessionUser", userDao.getUserByName(name));
+				}
+			}
+			//check if user is new
+			if (userIsNew) {
+				//if user is new add a new user with the given name into the database and the session
+				userDao.persist(new User(name));
+				session.setAttribute("sessionUser", userDao.getUserByName(name));
 			}
 		}else{
-	        Cookie loggedInUser = new Cookie("loggedInUser", name);
-	        response.addCookie(loggedInUser);
+			//name is null or not empty or maches charackters(all inputs are letters)
+			request.getSession().setAttribute("isWrongName", "1");//alter wrong input
 		}
-        // Display the list of guests:
-        doGet(request, response);
-    }
+		doGet(request, response);
+	}
 }
-

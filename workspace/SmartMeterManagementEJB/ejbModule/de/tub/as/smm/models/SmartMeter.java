@@ -17,11 +17,6 @@ import javax.persistence.Table;
 @Table
 public class SmartMeter implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3795592652898891610L;
-
 	// Persistent Fields:
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -16,16 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "User")
 public class User implements Serializable {
 
 	// Persistent Fields:
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7357486923885344708L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USER_ID")
@@ -48,8 +42,8 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getName(){
+		return this.name;
 	}
 
 	public void setName(String name) {
