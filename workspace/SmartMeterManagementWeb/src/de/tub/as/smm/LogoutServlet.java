@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
-	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		request.getRequestDispatcher("/user.jsp").forward(request, response);
+		request.getRequestDispatcher("/user").forward(request, response);
 	}
 
 	@Override

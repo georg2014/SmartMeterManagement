@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import de.tub.as.smm.dao.SmartMeterDao;
 import de.tub.as.smm.models.SmartMeter;
@@ -27,8 +28,12 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("deviceNumber", null);
+		
 		//setter
-		request.setAttribute("loggedInUser", request.getSession().getAttribute("sessionUser"));
+		request.setAttribute("loggedInUser", session.getAttribute("sessionUser"));
 		request.setAttribute("meterList", meterDao.getAllMeters());
 		//send home.jsp
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
@@ -37,7 +42,7 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		// Handle a new Smart Meter:
 		String gk = request.getParameter("gk");
 

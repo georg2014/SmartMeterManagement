@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="java.util.*"%> 
-    
+<%@ page import="java.util.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,18 +15,27 @@
 <body>
 	<div class="bg"></div>
 	<div class="fg">
-		<h1> Smart Meters </h1>
-		<h2 class="active"> Anwendungssysteme Task 2 SS 2017</h2>
+	
+		<div class="header">
+			<h1>Smart Meters Management</h1>
+			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
+		</div>
+		
+		<p></p>
+		
 		<!-- table where you can see the Smart Meter and go home -->
 		<table class=tableDefault>
-			<tr><th>Navigation</th></tr>
 			<tr>
-				<td><form method="POST" action="home"><input type="submit" value="home" class="button"/></form></td>
-				<td><form method="GET" action="logout"><input type="submit" value="Logout" /></form></td>
+				<td><form method="get" action="home">
+						<input type="submit" value="Smart Meter Overview" class="button" />
+					</form></td>
 			</tr>
 			<!-- display: id volt amper and strain -->
 			<tr>
-				<th>id</th><th>volt</th><th>current</th><th>max strain</th>
+				<th>id</th>
+				<th>volt</th>
+				<th>current</th>
+				<th>max strain</th>
 			</tr>
 			<tr>
 				<td>${deviceNumber}</td>
@@ -37,26 +46,33 @@
 			<!-- display: img -->
 			<tr>
 				<td></td>
-					<td>
-						<p>Smart Meter</p>
-						<img src="sm1.jpg">
-					</td>
+				<td>
+					<p>Smart Meter</p> <img src="sm1.jpg" width=90%>
+				</td>
 			</tr>
 		</table>
-			<!-- display: option to typ in kWh -->
-		<form method="POST" action="addData">
+
+
+			kWh:
+			
+			
+			<form method="POST" action="details">
+				<input type="text" name="value"> <input type="submit"
+					value="add" class="button" />
+			</form>
+			
+			
+
 			<table>
-				<tr>
-					<!-- TODO how to work with the inout??? -->
-					<td>kWh: </td><td><input type="text" name="value"></td>
-					<td><form method="POST" action="details"><input type="submit" value="add" class="button"/></form></td>
-				</tr>
 				<!-- display: typed in data -->
 				<tr>
-					<td>name</td><td>date</td><td>kWh</td><td></td>
+					<td>name</td>
+					<td>date</td>
+					<td>kWh</td>
 				</tr>
 				<!-- show all readings -->
-				<c:forEach items="${readings}" var="reading">
+				<c:forEach items="${readingList}" var="reading">
+					<hr>
 					<tr>
 						<!-- output -->
 						<td>${reading.benutzer}</td>
@@ -65,10 +81,25 @@
 					</tr>
 				</c:forEach>
 			</table>
-		</form>
-		<div><!-- algin at the bottom -->
-			<p style="position: relativ;bottom: 0;padding: 12;">made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
-		</div>
+			
+			<hr>
+			
+			<p></p>
+			
+			<table>
+			
+			<tr>
+
+				<td>
+					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+				</td>
+				<td>
+					<form method="GET" action="logout">
+						<input type="submit" value="Logout" />
+					</form>
+				</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>
