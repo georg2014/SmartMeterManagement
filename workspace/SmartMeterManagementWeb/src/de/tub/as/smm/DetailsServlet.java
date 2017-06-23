@@ -49,11 +49,9 @@ public class DetailsServlet extends HttpServlet {
 
 		System.out.println(currentSM);
 		System.out.println(currentU);
-		
-		Double mCurr = mea.measureCurr(currentSM);
-		Double mVolt = mea.measureVolt();
-		
+
 		// setter
+<<<<<<< HEAD
 <<<<<<< HEAD
 		request.setAttribute("volt", mVolt);
 		request.setAttribute("curr", mCurr);
@@ -62,14 +60,11 @@ public class DetailsServlet extends HttpServlet {
 <<<<<<< HEAD
 		request.setAttribute("curr", mea.measureCurr(currentSM));
 >>>>>>> parent of 66a3620... Die Warnungmeldungen auf den Seiten fehlen noch
+=======
+		request.setAttribute("volt", mea.measureVolt());
+		request.setAttribute("curr", mea.measureCurr(currentSM));
+>>>>>>> parent of aa27d84... Serverlet polish
 		request.setAttribute("max", currentSM.getMaxBelastung());
-
-		// Handle To High Voltage Error
-		if (mea.isOverMax(currentSM, mCurr)) {
-			session.setAttribute("isToHigh", "1");
-		} else {
-			session.setAttribute("isToHigh", "0");
-		}
 
 		if (!(currentU == null)) {
 			request.setAttribute("readingList", smartMeterDao.getSpecificReadings(currentSM, currentU));
@@ -91,34 +86,44 @@ public class DetailsServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// make a new session
+		//make a new session
 		HttpSession session = request.getSession();
-		// get smart meter from session and user
+		//get smart meter from session and user
 		SmartMeter currentSM = (SmartMeter) session.getAttribute("deviceNumber");
 		User currentU = (User) session.getAttribute("sessionUser");
-
-		// debug print outs
+		
+		//debug print outs
 		System.out.println(currentSM);
 		System.out.println(currentU);
 
 		// Handle new Reading
 <<<<<<< HEAD
 		if (!(currentU == null)) {
-			
-			// check for valid inputs
+			//check for valid inputs
 			if (request.getParameter("value").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				session.setAttribute("isWrongValue", "0");// no alter
+				session.setAttribute("isWrongValue", "0");//no alter
 				Double stand = Double.parseDouble(request.getParameter("value"));
-				
-				// add reading to the reading database
+				//add reading to the reading database
 				rDao.persist(new Reading(currentSM, currentU, stand));
-			} else {
-				session.setAttribute("isWrongValue", "1");// alter wrong input
+			}else{
+				session.setAttribute("isWrongValue", "1");//alter wrong input
 			}
+<<<<<<< HEAD
 			
 		} else {
 			
 //			session.setAttribute("isWrongValue", "1");// alter wrong input
+=======
+		}else{
+			session.setAttribute("isWrongValue", "1");//alter wrong input
+		}
+		
+		//Handle To High Voltage Error
+		if(mea.isOverMax(currentSM, currentSM.getMaxBelastung())){
+			session.setAttribute("isToHigh", "1");
+		}else{
+			session.setAttribute("isToHigh", "0");
+>>>>>>> parent of aa27d84... Serverlet polish
 		}
 		//TODO no final version!!!
 		rDao.persist(new Reading(currentSM, currentU, 3465.));
