@@ -45,23 +45,30 @@ public class HomeServlet extends HttpServlet {
 		
 		// Handle a new Smart Meter:
 		String gk = request.getParameter("gk");
+		
 		//check that max is a number this commas my be
 		if (request.getParameter("max").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+			
 			//if max only contains numbers
 			//make to double
 			Double max = Double.parseDouble(request.getParameter("max"));
+			
 			//check that gk begins with two big letters and 8 numbers and max is between 50 and 100
 			if (gk.matches("[A-Z]{2}[0-9]{8}") && max >= 50 && max <= 100) {
+				
 				//if gk contains two big letters and 8 numbers and max is between 50 and 100
 				request.getSession().setAttribute("isNoValidSM", "0");//no alert
+				
 				//get a list of all smart meters from the database
 				List<SmartMeter> meterList = meterDao.getAllMeters();
 				
 				boolean meterIsNew = true;
+				
 				//check if in all smart meters is on with the same gk
 				for (SmartMeter m : meterList) {
 					if (gk.equals(m.getGeraeteKennung())) {
-						//if it is so make meterIsNew to false because there exsits yet a meter
+						
+						//if it is so make meterIsNew to false because there exists yet a meter
 						meterIsNew = false;
 					}
 				}
