@@ -16,6 +16,7 @@
 <body>
 	<div class="bg"></div>
 	<div class="fg">
+	
 		<div class="header">
 			<h1>Smart Meters Management</h1>
 			<h4 class="active">Anwendungssysteme Task 2 SS 2017</h4>
@@ -24,53 +25,54 @@
 		<!-- table where you can see the Smart Meters and go to their detail view via button -->
 
 
-			
-				<th>Logged in as: <big>${loggedInUser}</big></th>
-				
-				<p></p>
+
+		<p>
+			Logged in as: <big>${loggedInUser.name}</big>
+		</p>
+
+		<p></p>
 
 
 
-				<form method="POST" action="home">
-						Has to be like => AB12345678 <br>
-						Gerätekennung: <input type="text" name="gk" />
-						<br>
-						<br>
-						Between 50A and 100A <br>
-						Max strain in Ampere: <input type="text" name="max"/>
-						<br>
-						<br>
-						<input type="submit" value="Add Smart Meter"/>
-						<br>
-				</form>
+		<form method="POST" action="home">
+			Has to be like => AB12345678 <br> Gerätekennung: <input
+				type="text" name="gk" /> <br> <br> Between 50A and 100A <br>
+			Max strain in Ampere: <input type="text" name="max" /> <br> <br>
+			<input type="submit" value="Add Smart Meter" /> <br>
+		</form>
+		
+		<p></p>
 
-			<c:forEach items="${meterList}" var="meter">
-				<hr>
-					<p><img src="sm1.jpg" alt="Smart Meter" width="20%"></p>
-					<p>Gerätekennung :</p>
-					<p>${meter.geraeteKennung}</p>
-				
-
-			</c:forEach>
+		<c:forEach items="${meterList}" var="meter">
 			<hr>
-			<tr>
-
-			</tr>
+			<form method="GET" action="details">
+				<p>
+					<img src="sm1.jpg" alt="Smart Meter" width="20%">
+				</p>
+				<p>Gerätekennung :</p>
+				<p>${meter.geraeteKennung}</p>
+				<input type="hidden" name="thisGK" value="${meter.geraeteKennung}" />
+				<!-- to go to the details view of the current smart meter -->
+				<input type="submit" value="Go To Details" />
+			</form>
+		</c:forEach>
+		
+		<hr>
+		<p></p>
+		
 		<table>
 			<tr>
 
+				<td>
+					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
+				</td>
 				<td>
 					<form method="GET" action="logout">
 						<input type="submit" value="Logout" />
 					</form>
 				</td>
-				
 			</tr>
 		</table>
-		<div>
-			<p style="position: relativ; bottom: 0; padding: 12;">made by
-				Leon, Jakob, Jonas and Georg (Gruppe E)</p>
-		</div>
 	</div>
 </body>
 </html>

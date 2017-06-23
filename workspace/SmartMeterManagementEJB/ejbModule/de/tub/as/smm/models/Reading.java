@@ -23,11 +23,11 @@ public class Reading implements Serializable {
 	Long id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "SMART_ID")
+	@JoinColumn
 	private SmartMeter geraet;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn
 	private User benutzer;
 
 	@Column(name = "TIME")
