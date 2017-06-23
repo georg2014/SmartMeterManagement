@@ -101,7 +101,7 @@ public class DetailsServlet extends HttpServlet {
 			}
 			
 		} else {
-			session.setAttribute("isWrongValue", "1");// alter wrong input
+			
 		}
 
 		doGet(request, response);

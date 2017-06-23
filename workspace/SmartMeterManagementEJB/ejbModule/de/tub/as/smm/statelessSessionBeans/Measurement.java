@@ -34,7 +34,7 @@ public class Measurement {
 	 */
 	public double measureCurr(SmartMeter smart){
 		
-		double curr = Math.random()*smart.getMaxBelastung();
+		double curr = Math.random()*smart.getMaxBelastung()+5;
 		curr = curr*10;
 		curr = Math.round(curr);
 		curr = curr/10;

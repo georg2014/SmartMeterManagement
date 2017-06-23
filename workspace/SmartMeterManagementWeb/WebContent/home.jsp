@@ -44,11 +44,11 @@
 			var Msg = '<%=session.getAttribute("isNoValidSM")%>' ;
 			if(Msg == "1"){
 				function alertName(){
-					alert("Please enter Max strain like 99(only numbers) to add Smart Meter.");
+					alert("Max strain must be a double value between 50-100");
 				}
 			}else if(Msg == "2"){
 				function alertName(){
-					alert("Please enter Max strain like 99(only numbers between 50-100) and Geraetekennung like GG8888888(two letters and directly after them 8 numbers) to add Smart Meter.");
+					alert("Gerätekennung must be a combination out of two upper case letters an 8 numbers");
 				}
 			}
 			window.onload = alertName;
@@ -80,7 +80,7 @@
 				</td>
 				<td>
 					<form method="GET" action="logout">
-						<input type="submit" value="Logout" />
+						<input type="submit" value="Logout"  class="btn"/>
 					</form>
 				</td>
 			</tr>

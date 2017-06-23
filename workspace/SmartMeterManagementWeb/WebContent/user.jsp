@@ -26,8 +26,8 @@
 
 		<p>
 			Hi welcome to the Smart Meter Management Web page! <br> Please
-			enter your name to continue(just alphabetics)! <br> (Otherwise
-			you can just see the Smart Meter Management but don't have access!)
+			enter your name to continue(just alphabetics)! <br>
+			(If you are not logged in you can't create new readings)
 		</p>
 		<form method="POST" action="user">
 			Name: <input type="text" name="name" /> <input type="submit"
