@@ -34,8 +34,8 @@
 
 
 		<form method="POST" action="home">
-			Has to be like => AB12345678 <br> Gerätekennung: <input
-				type="text" name="gk"/> <br> <br> Between 50A and 100A <br>
+			Example: AB12345678 <br> Gerätekennung: <input
+				type="text" name="gk"/> <br> <br> Values from 50 - 100 <br>
 			Max strain in Ampere: <input type="text" name="max" /> <br> <br>
 			<input type="submit" value="Add Smart Meter" class="btn"/> <br>
 		</form>

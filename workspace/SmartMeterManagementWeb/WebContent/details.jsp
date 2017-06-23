@@ -38,7 +38,7 @@
 		
 		<!-- Permanente Kennung und Max Belastung -->
 		<p>
-			Gerätekennung: <span id="gk">${deviceNumber}</span>
+			Gerätekennung: <span id="gk">${deviceNumber.geraeteKennung}</span>
 		</p>
 		<p>
 			Max. Belastung: <span id="maxA">${max}</span>A
@@ -58,15 +58,14 @@
 		<p></p>
 		
 		<script type="text/javascript">
-			var Msg = '<%=session.getAttribute("isWrongValue")%>' ;
-			if(Msg == "1"){
+			var wv = '<%=session.getAttribute("isWrongValue")%>' ;
+			if(wv == "1"){
 				function alertName(){
 					alert("Please enter only numbers");
 				}
 			}
-			Msg = '<%=session.getAttribute("isToHigh")%>
-			';
-			if (Msg == "1") {
+			var th = '<%=session.getAttribute("isToHigh")%>';
+			if (th == "1") {
 				function alertName() {
 					alert("Alert: Current is to high!");
 				}

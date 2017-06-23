@@ -76,15 +76,13 @@ public class DetailsServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		// make a new session
 		HttpSession session = request.getSession();
+		
 		// get smart meter from session and user
 		SmartMeter currentSM = (SmartMeter) session.getAttribute("deviceNumber");
 		User currentU = (User) session.getAttribute("sessionUser");
-
-		// debug print outs
-		System.out.println(currentSM);
-		System.out.println(currentU);
 
 		// Handle new Reading
 		if (!(currentU == null)) {
