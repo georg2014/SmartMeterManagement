@@ -24,7 +24,6 @@
 		</div>
 
 
-
 		<p>
 			Hi welcome to the Smart Meter Management Web page! <br> Please
 			enter your name to continue(just alphabetics)! <br> (Otherwise
@@ -66,7 +65,7 @@
 
 		<p></p>
 
-		<table>
+		<table class="footer">
 			<tr>
 				<td>
 					<p>made by Leon, Jakob, Jonas and Georg (Gruppe E)</p>
