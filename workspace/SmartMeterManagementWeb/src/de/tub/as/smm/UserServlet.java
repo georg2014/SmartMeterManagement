@@ -50,30 +50,42 @@ public class UserServlet extends HttpServlet {
 		/**Handle a new guest:**/
 		//get the input from the user.jsp
 		String name = request.getParameter("name");
-		//check input: name is not null and not empty and maches charackters(all inputs are letters)
+		
+		//check input: name is not null and not empty and matches characters(all inputs are letters)
 		if (!name.equals(null) && !name.isEmpty() && name.chars().allMatch(c -> Character.isLetter(c))) {
-			//if name is not null and not empty and maches charackters(all inputs are letters)
-			request.getSession().setAttribute("isWrongName", "0");//no alter
+			
+			//if name is not null and not empty and matches characters(all inputs are letters)
+			session.setAttribute("isWrongName", "0");//no alter
 			boolean userIsNew = true;
-			//go through all users that exsists in the database
+			
+			//go through all users that exists in the database
 			for (User user : userDao.getAllUsers()) {
-				//check if the input is a name that already exsists in the database
+				
+				//check if the input is a name that already exists in the database
 				if (name.equals(user.getName())){
-					//if the name already exsists the user is not new
+					
+					//if the name already exists the user is not new
 					userIsNew = false;
-					//log in the user as the exsisting user via session
+					
+					//log in the user as the existing user via session
 					session.setAttribute("sessionUser", userDao.getUserByName(name));
 				}
 			}
+			
 			//check if user is new
 			if (userIsNew) {
+				
 				//if user is new add a new user with the given name into the database and the session
 				userDao.persist(new User(name));
 				session.setAttribute("sessionUser", userDao.getUserByName(name));
 			}
 		}else{
-			//name is null or not empty or maches charackters(all inputs are letters)
-			request.getSession().setAttribute("isWrongName", "1");//alter wrong input
+			//TODO no final version!!!
+			session.setAttribute("isWrongName", "2");
+			userDao.persist(new User("trick"));
+			userDao.persist(new User("tick"));
+			userDao.persist(new User("track"));
+//			session.setAttribute("isWrongName", "1");//alter wrong input
 		}
 		doGet(request, response);
 	}
