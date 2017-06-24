@@ -78,6 +78,7 @@ tr,th,td{
 
 /*Text/value are shown on the smart meter picture ;)*/
 #imgtxt2{
+<<<<<<< HEAD
 	font-size: 90%;
 	position: absolute;
 	top: 330px;
@@ -91,4 +92,19 @@ tr,th,td{
 	top: 350px;
 	left: 115px;
 	width: 100%;
+=======
+    font-size: 90%;
+    position: absolute;
+    top: 360px;
+    left: 170px;
+    width: 100%;
+}
+
+#imgtxt1{
+    font-size: 90%;
+    position: absolute;
+    top: 375px;
+    left: 170px;
+    width: 100%;
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 }

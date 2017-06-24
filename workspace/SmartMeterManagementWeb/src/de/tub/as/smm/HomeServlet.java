@@ -81,6 +81,7 @@ public class HomeServlet extends HttpServlet {
 				request.getSession().setAttribute("isNoValidSM", "2");//alter wrong input
 			}
 		}else{
+<<<<<<< HEAD
 			//TODO no final version!!!
 			meterDao.persist(new SmartMeter("AB12345678", 100.));
 			meterDao.persist(new SmartMeter("AB12344657", 50.12));
@@ -90,6 +91,10 @@ public class HomeServlet extends HttpServlet {
 			
 			//max not only contains numbers
 //			request.getSession().setAttribute("isNoValidSM", "1");//alter wrong input
+=======
+			//max not only contains numbers
+			request.getSession().setAttribute("isNoValidSM", "1");//alter wrong input
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 		}
 		doGet(request, response);
 

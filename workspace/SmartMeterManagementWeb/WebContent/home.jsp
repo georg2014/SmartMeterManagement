@@ -34,8 +34,13 @@
 
 
 		<form method="POST" action="home">
+<<<<<<< HEAD
 			Has to be like => AB12345678 <br> Gerätekennung: <input
 				type="text" name="gk"/> <br> <br> Between 50A and 100A <br>
+=======
+			Example: AB12345678 <br> Gerätekennung: <input
+				type="text" name="gk"/> <br> <br> Values from 50 - 100 <br>
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 			Max strain in Ampere: <input type="text" name="max" /> <br> <br>
 			<input type="submit" value="Add Smart Meter" class="btn"/> <br>
 		</form>
@@ -44,11 +49,19 @@
 			var Msg = '<%=session.getAttribute("isNoValidSM")%>' ;
 			if(Msg == "1"){
 				function alertName(){
+<<<<<<< HEAD
 					alert("Please enter Max strain like 99(only numbers) to add Smart Meter.");
 				}
 			}else if(Msg == "2"){
 				function alertName(){
 					alert("Please enter Max strain like 99(only numbers between 50-100) and Geraetekennung like GG8888888(two letters and directly after them 8 numbers) to add Smart Meter.");
+=======
+					alert("Max strain must be a double value between 50-100");
+				}
+			}else if(Msg == "2"){
+				function alertName(){
+					alert("Gerätekennung must be a combination out of two upper case letters an 8 numbers");
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 				}
 			}
 			window.onload = alertName;
@@ -80,7 +93,7 @@
 				</td>
 				<td>
 					<form method="GET" action="logout">
-						<input type="submit" value="Logout" />
+						<input type="submit" value="Logout"  class="btn"/>
 					</form>
 				</td>
 			</tr>

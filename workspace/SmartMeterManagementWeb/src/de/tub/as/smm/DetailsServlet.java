@@ -76,16 +76,27 @@ public class DetailsServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+		
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 		// make a new session
 		HttpSession session = request.getSession();
+<<<<<<< HEAD
+=======
+		
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 		// get smart meter from session and user
 		SmartMeter currentSM = (SmartMeter) session.getAttribute("deviceNumber");
 		User currentU = (User) session.getAttribute("sessionUser");
 
+<<<<<<< HEAD
 		// debug print outs
 		System.out.println(currentSM);
 		System.out.println(currentU);
 
+=======
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 		// Handle new Reading
 		if (!(currentU == null)) {
 			
@@ -102,7 +113,10 @@ public class DetailsServlet extends HttpServlet {
 			
 		} else {
 			
+<<<<<<< HEAD
 //			session.setAttribute("isWrongValue", "1");// alter wrong input
+=======
+>>>>>>> refs/heads/JakobsZweigAufgabe2
 		}
 		//TODO no final version!!!
 		rDao.persist(new Reading(currentSM, currentU, 3465.));
