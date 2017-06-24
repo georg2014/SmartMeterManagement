@@ -31,7 +31,7 @@
 		
 	
 
-		<img src="sm1.jpg" width=30%> <br>
+		<img src="sm1.jpg" width=17%> <br>
 		
 		<!-- Permanente Kennung und Max Belastung -->
 		<p>
@@ -59,6 +59,11 @@
 			if(wv == "1"){
 				function alertName(){
 					alert("Please enter only numbers");
+				}
+			}
+			if(wv == "2"){
+				function alertName(){
+					alert("To create readings you have to be logged in");
 				}
 			}
 			var th = '<%=session.getAttribute("isToHigh")%>';

@@ -9,6 +9,9 @@ import javax.persistence.TypedQuery;
 
 import de.tub.as.smm.models.Reading;
 
+/**
+ * Session Bean implementation class ReadingDao
+ */
 @Stateless
 public class ReadingDao {
 

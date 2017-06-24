@@ -12,7 +12,7 @@ import de.tub.as.smm.models.SmartMeter;
 import de.tub.as.smm.models.User;
 
 /**
- * Session Bean implementation class UserDaoEJB
+ * Session Bean implementation class SmartMeterDaoEJB
  */
 @Stateless
 public class SmartMeterDao {
@@ -29,7 +29,7 @@ public class SmartMeterDao {
 	
 	/**
 	 * Deletes the SM that matches the given Gk
-	 * @param m Gerätekennung
+	 * @param m Gerï¿½tekennung
 	 */
 	public void removeMeters(String m) {
 
@@ -44,10 +44,10 @@ public class SmartMeterDao {
 	
 	/**
 	 * 
-	 * Updates the Gerätekennung and the Max strain of a specific Smart Meter
+	 * Updates the Gerï¿½tekennung and the Max strain of a specific Smart Meter
 	 * 
-	 * @param gk Gerätekennung of the SM that is to be updated
-	 * @param newgk New Gerätekennung
+	 * @param gk Gerï¿½tekennung of the SM that is to be updated
+	 * @param newgk New Gerï¿½tekennung
 	 * @param max new max strain value
 	 */
 	public void updateMeters(String gk, String newgk, Double max) {
@@ -69,9 +69,9 @@ public class SmartMeterDao {
 	
 	/**
 	 * 
-	 * Returns the SmartMeter that matches with the given Grätekennung
+	 * Returns the SmartMeter that matches with the given Grï¿½tekennung
 	 * 
-	 * @param gk Gerätekennung
+	 * @param gk Gerï¿½tekennung
 	 * @return
 	 */
 	public SmartMeter getMeterByGk(String gk) {

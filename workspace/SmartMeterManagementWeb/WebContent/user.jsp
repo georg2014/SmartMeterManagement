@@ -27,16 +27,21 @@
 			enter your name to continue(just alphabetics)! <br>
 			(If you are not logged in you can't create new readings)
 		</p>
+		
 		<form method="POST" action="user">
 			Name: <input type="text" name="name" /> <input type="submit"
 				value="Sign in"  class="btn"/>
 		</form>
+		
+		<%-- ${ } reference to a attribute from request --%>
 		<p>
 			You are logged in as : <b>${loggedInUser.name}</b>
 		</p>
+		
 		<form method="GET" action="home">
 			<input type="submit" value="Go to Smart Meter Overview" class="btn">
 		</form>
+		
 		<!-- ErrorMsg: Name Input Wrong -->
 		<script type="text/javascript">
 			var Msg = '<%=session.getAttribute("isWrongName")%>' ;

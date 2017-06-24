@@ -42,32 +42,38 @@ public class DetailsServlet extends HttpServlet {
 		if (session.getAttribute("deviceNumber") == null) {
 			session.setAttribute("deviceNumber", smartMeterDao.getMeterByGk(request.getParameter("thisGK")));
 		}
-
+		
+		//get the device that was selected on smart meter overview
 		SmartMeter currentSM = (SmartMeter) session.getAttribute("deviceNumber");
-
+		
+		//get the logged in user
 		User currentU = (User) session.getAttribute("sessionUser");
 		
+		//takes measurements with the injected Measurement session bean
 		Double mCurr = mea.measureCurr(currentSM);
 		Double mVolt = mea.measureVolt();
 		
-		// set attributes for details jsp
+		//set attributes for details jsp
 		request.setAttribute("volt", mVolt);
 		request.setAttribute("curr", mCurr);
 		request.setAttribute("max", currentSM.getMaxBelastung());
 
 		// Handle To High Voltage Error
 		if (mea.isOverMax(currentSM, mCurr)) {
+			//set alert 
 			session.setAttribute("isToHigh", "1");
 		} else {
+			//reset alert
 			session.setAttribute("isToHigh", "0");
 		}
 		
 		//only get all readings for this user and smartmeter if a user is logged in
 		if (!(currentU == null)) {
+			//gets reading based on the current smart meter and user
 			request.setAttribute("readingList", smartMeterDao.getSpecificReadings(currentSM, currentU));
 		}
 
-		// send details.jsp
+		//send details.jsp
 		request.getRequestDispatcher("/details.jsp").forward(request, response);
 	}
 
@@ -75,7 +81,6 @@ public class DetailsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// make a new session
 		HttpSession session = request.getSession();
 		
 		// get smart meter from session and user
@@ -83,6 +88,7 @@ public class DetailsServlet extends HttpServlet {
 		User currentU = (User) session.getAttribute("sessionUser");
 
 		// Handle new Reading
+		//a user must be logged in to create readings
 		if (!(currentU == null)) {
 			
 			// check if the input value is in double format
@@ -101,7 +107,8 @@ public class DetailsServlet extends HttpServlet {
 			}
 			
 		} else {
-			
+			//set different alert
+			session.setAttribute("isWrongValue", "2");
 		}
 
 		doGet(request, response);
