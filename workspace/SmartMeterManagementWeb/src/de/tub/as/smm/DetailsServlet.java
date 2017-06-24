@@ -90,6 +90,7 @@ public class DetailsServlet extends HttpServlet {
 				
 				//resets alert attribute
 				session.setAttribute("isWrongValue", "0");
+				//parse String and cast to Double
 				Double stand = Double.parseDouble(request.getParameter("value"));
 				
 				// add reading to the reading database
