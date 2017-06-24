@@ -47,7 +47,7 @@ public class HomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//Gets the gk for the new smartmeter
+		//Gets the gk for the new smartmeter and the max strain
 		String gk = request.getParameter("gk");
 		String max = request.getParameter("max");
 		
