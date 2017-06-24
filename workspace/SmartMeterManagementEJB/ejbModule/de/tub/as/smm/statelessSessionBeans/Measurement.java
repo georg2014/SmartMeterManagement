@@ -33,12 +33,7 @@ public class Measurement {
 	 * @return
 	 */
 	public double measureCurr(SmartMeter smart){
-		
-<<<<<<< HEAD
-		double curr = Math.random()*smart.getMaxBelastung();
-=======
 		double curr = Math.random()*smart.getMaxBelastung()+5;
->>>>>>> refs/heads/JakobsZweigAufgabe2
 		curr = curr*10;
 		curr = Math.round(curr);
 		curr = curr/10;
