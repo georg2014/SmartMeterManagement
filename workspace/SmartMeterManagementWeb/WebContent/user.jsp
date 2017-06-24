@@ -42,7 +42,7 @@
 			<input type="submit" value="Go to Smart Meter Overview" class="btn">
 		</form>
 		
-		<!-- ErrorMsg: Name Input Wrong -->
+		<!-- Java Script for throwing alerts -->
 		<script type="text/javascript">
 			var Msg = '<%=session.getAttribute("isWrongName")%>' ;
 			if(Msg == "1"){
@@ -59,6 +59,9 @@
 		</script>
 		<hr>
 		<p>Signed in users:</p>
+		
+		<!-- c: tag is from jstl library, we imported it for better functionallity -->
+		<!-- prints out all users that have signed in -->
 		<c:forEach items="${userList}" var="user">
 
 			<p>${user}</p>
