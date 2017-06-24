@@ -13,8 +13,6 @@
 </head>
 
 <body>
-	<div class="bg"></div>
-	<div class="fg">
 	
 		<div class="header">
 			<h1>Smart Meters Management</h1>
@@ -30,8 +28,6 @@
 		</p>
 
 		<p></p>
-
-
 
 		<form method="POST" action="home">
 			Example: AB12345678 <br> Gerätekennung: <input
@@ -85,6 +81,5 @@
 				</td>
 			</tr>
 		</table>
-	</div>
 </body>
 </html>

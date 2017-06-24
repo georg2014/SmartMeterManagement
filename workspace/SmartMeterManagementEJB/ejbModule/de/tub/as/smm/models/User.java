@@ -19,21 +19,23 @@ import javax.persistence.Table;
 @Table(name = "User")
 public class User implements Serializable {
 
-	// Persistent Fields:
+	//Persistent auto generatet Id attribute
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USER_ID")
 	Long id;
-
+	
 	@Column(name = "NAME")
 	private String name;
 
 	@Column(name = "SINGING_DATE")
 	private Date signingDate;
-
+	
+	//one to many relation with readings
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "benutzer")
 	private List<Reading> readings;
 
+	//Getters n setters
 	public Long getId() {
 		return id;
 	}
@@ -58,10 +60,14 @@ public class User implements Serializable {
 		return readings;
 	}
 
-	// Constructors:
+	// Constructor for serializable
 	public User() {
 	}
-
+	
+	/**
+	 * Constructor for a new user with name and current time as signindate
+	 * @param name
+	 */
 	public User(String name) {
 		this.name = name;
 		this.signingDate = new Date(System.currentTimeMillis());

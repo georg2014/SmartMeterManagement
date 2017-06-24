@@ -23,7 +23,7 @@ import de.tub.as.smm.statelessSessionBeans.Measurement;
 @WebServlet("/details")
 public class DetailsServlet extends HttpServlet {
 
-	// Injected EJB:
+	// Injected EJBs:
 	@EJB
 	Measurement mea;
 	@EJB
@@ -46,14 +46,11 @@ public class DetailsServlet extends HttpServlet {
 		SmartMeter currentSM = (SmartMeter) session.getAttribute("deviceNumber");
 
 		User currentU = (User) session.getAttribute("sessionUser");
-
-		System.out.println(currentSM);
-		System.out.println(currentU);
 		
 		Double mCurr = mea.measureCurr(currentSM);
 		Double mVolt = mea.measureVolt();
 		
-		// setter
+		// set attributes for details jsp
 		request.setAttribute("volt", mVolt);
 		request.setAttribute("curr", mCurr);
 		request.setAttribute("max", currentSM.getMaxBelastung());
@@ -64,7 +61,8 @@ public class DetailsServlet extends HttpServlet {
 		} else {
 			session.setAttribute("isToHigh", "0");
 		}
-
+		
+		//only get all readings for this user and smartmeter if a user is logged in
 		if (!(currentU == null)) {
 			request.setAttribute("readingList", smartMeterDao.getSpecificReadings(currentSM, currentU));
 		}
@@ -87,15 +85,19 @@ public class DetailsServlet extends HttpServlet {
 		// Handle new Reading
 		if (!(currentU == null)) {
 			
-			// check for valid inputs
+			// check if the input value is in double format
 			if (request.getParameter("value").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
-				session.setAttribute("isWrongValue", "0");// no alter
+				
+				//resets alert attribute
+				session.setAttribute("isWrongValue", "0");
 				Double stand = Double.parseDouble(request.getParameter("value"));
 				
 				// add reading to the reading database
 				rDao.persist(new Reading(currentSM, currentU, stand));
+			
 			} else {
-				session.setAttribute("isWrongValue", "1");// alter wrong input
+				//sets alert attribute
+				session.setAttribute("isWrongValue", "1");
 			}
 			
 		} else {

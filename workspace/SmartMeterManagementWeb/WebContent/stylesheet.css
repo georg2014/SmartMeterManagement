@@ -6,15 +6,6 @@
 
 .header {
 	top: 0;
-	width: 96%;
-	padding: 20px;
-	color: white;
-	background-color: black;
-	text-align: center;
-}
-
-.footer {
-	top: 0;
 	width: 100%;
 	padding: 20px;
 	color: white;
@@ -22,31 +13,23 @@
 	text-align: center;
 }
 
+.footer{
+	position: absolute;
+	bottom: 0;
+	width:100%;
+	padding: 10px;
+	color: white;
+	background-color: black;
+	font-size: 1;
+	text-align: left;
+}
+}
+
 body, html {
 	height: 100%;
 	margin: center;
 }
 
-.bg {
-	/* The image used */
-	background-image:
-		url(https://blog.nxp.com/wp-content/uploads/2017/02/01_SmartMeterblog_illustration_generic_lsv1-2-960x425.jpg);
-	/* Center and scale the image nicely */
-	background-position: center;
-	background-repeat: repeat;
-	background-size: cover;
-	/*make it transparent*/
-	opacity: 0.5;
-}
-
-.fg {
-	/*make the position absolut before the bg and no opacity*/
-	top: 0;
-	width: 90%;
-	padding: 20px;
-	algin: center;
-	position: absolute;
-}
 
 .btn {
 	align-conten:center;

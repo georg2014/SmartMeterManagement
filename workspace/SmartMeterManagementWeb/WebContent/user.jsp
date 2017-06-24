@@ -15,8 +15,6 @@
 </head>
 
 <body>
-	<div class="bg"></div>
-	<div class="fg">
 
 		<div class="header">
 			<h1>Smart Meters Management</h1>

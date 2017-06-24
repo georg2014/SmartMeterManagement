@@ -13,9 +13,6 @@
 </head>
 
 <body>
-	<div class="bg"></div>
-	<div class="fg">
-
 		<div class="header">
 			<h1>Smart Meters Management</h1>
 			<h4>Anwendungssysteme Task 2 SS 2017</h4>
@@ -106,6 +103,6 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+		
 </body>
 </html>

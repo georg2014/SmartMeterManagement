@@ -30,11 +30,15 @@ public class HomeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		//resets the gerätekennung that was used for a previous detailed view of the smart meter matching the gk
 		session.setAttribute("deviceNumber", null);
 		
-		//setter
+		//sets the logged in user attribute for the jsp
 		request.setAttribute("loggedInUser", session.getAttribute("sessionUser"));
+		
+		//gets all smart meters and makes them available for the home jsp
 		request.setAttribute("meterList", meterDao.getAllMeters());
+		
 		//send home.jsp
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
@@ -43,21 +47,23 @@ public class HomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// Handle a new Smart Meter:
+		//Gets the gk for the new smartmeter
 		String gk = request.getParameter("gk");
+		String max = request.getParameter("max");
 		
-		//check that max is a number this commas my be
-		if (request.getParameter("max").matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+		//check if gk begins with two big letters and 8 numbers
+		if (gk.matches("[A-Z]{2}[0-9]{8}")) {
 			
-			//if max only contains numbers
-			//make to double
-			Double max = Double.parseDouble(request.getParameter("max"));
 			
-			//check that gk begins with two big letters and 8 numbers and max is between 50 and 100
-			if (gk.matches("[A-Z]{2}[0-9]{8}") && max >= 50 && max <= 100) {
+			//checks if max strain matches a double number
+			if (max.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
 				
-				//if gk contains two big letters and 8 numbers and max is between 50 and 100
-				request.getSession().setAttribute("isNoValidSM", "0");//no alert
+				Double dmax = Double.parseDouble(max);
+				
+				if(dmax>=50 && dmax<=100){
+				
+				//resets alert attribute when input was correct
+				request.getSession().setAttribute("isNoValidSM", "0");
 				
 				//get a list of all smart meters from the database
 				List<SmartMeter> meterList = meterDao.getAllMeters();
@@ -74,15 +80,24 @@ public class HomeServlet extends HttpServlet {
 				}
 				if (meterIsNew) {
 					//add new smart meter to the database
-					meterDao.persist(new SmartMeter(gk, max));
+					meterDao.persist(new SmartMeter(gk, dmax));
 				}
+				
+				}
+				
+				else{
+					//sets alert attribute for home jsp when max input isnt within 50 - 100
+					request.getSession().setAttribute("isNoValidSM", "1");
+				}
+				
 			}else{
-				//gk contains not two big letters and 8 numbers and max is between 50 and 100
-				request.getSession().setAttribute("isNoValidSM", "2");//alter wrong input
+				//sets alert attribute for home jsp when max input isnt in double format
+				request.getSession().setAttribute("isNoValidSM", "1");
 			}
+			
 		}else{
-			//max not only contains numbers
-			request.getSession().setAttribute("isNoValidSM", "1");//alter wrong input
+			//sets alert attribute when gk has not the right format
+			request.getSession().setAttribute("isNoValidSM", "2");//alter wrong input
 		}
 		doGet(request, response);
 
