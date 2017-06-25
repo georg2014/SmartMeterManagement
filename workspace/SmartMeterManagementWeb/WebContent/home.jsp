@@ -32,7 +32,7 @@
 	<form method="POST" action="home">
 		Example: AB12345678 <br> Gerätekennung: <input type="text"
 			name="gk" /> <br> <br> Values from 50 - 100 <br> Max
-		strain in Ampere: <input type="text" name="max" /> <br> <br>
+		Max. strain in ampere: <input type="text" name="max" /> <br> <br>
 		<input type="submit" value="Add Smart Meter" class="btn" /> <br>
 	</form>
 
@@ -41,9 +41,10 @@
 		var Msg = '<%=session.getAttribute("isNoValidSM")%>';
 		if (Msg == "1") {
 			function alertName() {
-				alert("Max strain must be a double value between 50-100");
+				alert("Max strain must be a double value from 50-100");
 			}
-		} else if (Msg == "2") {
+		}
+		if (Msg == "2") {
 			function alertName() {
 				alert("Gerätekennung must be a combination out of two upper case letters an 8 numbers");
 			}
@@ -58,11 +59,11 @@
 		<hr>
 		<form method="GET" action="details">
 			<p>
-				<img src="sm1.jpg" alt="Smart Meter" width="20%">
+				<img src="sm1.jpg" alt="Smart Meter" width="10%">
 			</p>
 			<p>Geraetekennung :</p>
 			<p>${meter.geraeteKennung}</p>
-			<!-- 				sets an attribute so the current device can be displayed by selected by details serverlet -->
+			<!-- sets an attribute so the details serverlet knows what device its dealing with -->
 			<input type="hidden" name="thisGK" value="${meter.geraeteKennung}" />
 			<!-- go to the details view of the current smart meter -->
 			<input type="submit" value="Go To Details" class="btn" />
