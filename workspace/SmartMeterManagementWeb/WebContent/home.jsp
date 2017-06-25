@@ -38,8 +38,7 @@
 
 	<!-- Java Script for throwing alerts -->
 	<script type="text/javascript">
-			var Msg = '<%=session.getAttribute("isNoValidSM")%>
-		';
+		var Msg = '<%=session.getAttribute("isNoValidSM")%>';
 		if (Msg == "1") {
 			function alertName() {
 				alert("Max strain must be a double value between 50-100");

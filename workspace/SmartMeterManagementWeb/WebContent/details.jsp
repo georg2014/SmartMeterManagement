@@ -59,20 +59,18 @@
 
 	<!-- Java Script for throwing alerts -->
 	<script type="text/javascript">
-			get 
-			var wv = '<%=session.getAttribute("isWrongValue")%>' ;
-			if(wv == "1"){
-				function alertName(){
-					alert("Please enter only numbers");
-				}
+		var wv = '<%=session.getAttribute("isWrongValue")%>' ;
+		if(wv == "1"){
+			function alertName(){
+				alert("Please enter only numbers");
 			}
-			if(wv == "2"){
-				function alertName(){
-					alert("To create readings you have to be logged in");
-				}
+		}
+		if(wv == "2"){
+			function alertName(){
+				alert("To create readings you have to be logged in");
 			}
-			var th = '<%=session.getAttribute("isToHigh")%>
-		';
+		}
+		var th = '<%=session.getAttribute("isToHigh")%>';
 		if (th == "1") {
 			function alertName() {
 				alert("Alert: Current is to high!");

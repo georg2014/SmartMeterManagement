@@ -65,7 +65,7 @@ public class User implements Serializable {
 	}
 	
 	/**
-	 * Constructor for a new user with name and current time as signindate
+	 * Constructor for a new user with name and current time as sign in date
 	 * @param name
 	 */
 	public User(String name) {
