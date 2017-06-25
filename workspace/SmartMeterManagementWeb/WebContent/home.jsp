@@ -31,7 +31,7 @@
 	<!-- calls post method of the home serverlet -->
 	<form method="POST" action="home">
 		Example: AB12345678 <br> Gerätekennung: <input type="text"
-			name="gk" /> <br> <br> Values from 50 - 100 <br> Max
+			name="gk" /> <br> <br> Values from 50 - 100 <br>
 		Max. strain in ampere: <input type="text" name="max" /> <br> <br>
 		<input type="submit" value="Add Smart Meter" class="btn" /> <br>
 	</form>
