@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class SmartMeter implements Serializable {
 
 	// Persistent Fields:
+	//Persistent auto generatet Id attribute
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "METER_ID")
@@ -29,9 +30,11 @@ public class SmartMeter implements Serializable {
 	@Column(name = "MAX")
 	private Double maxBelastung;
 
+	//one to many relation with readings
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "geraet")
 	private List<Reading> ablesungen;
 
+	//Getters n setters
 	public Long getId() {
 		return id;
 	}

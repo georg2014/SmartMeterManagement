@@ -17,15 +17,19 @@ import javax.persistence.Table;
 @Table
 public class Reading implements Serializable {
 	
+	// Persistent Fields:
+	//Persistent auto generatet Id attribute
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "R_ID")
 	Long id;
 
+	//many to one relation with smartmeter
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
 	private SmartMeter geraet;
 
+	//many to one relation with user
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn
 	private User benutzer;
@@ -36,6 +40,7 @@ public class Reading implements Serializable {
 	@Column(name = "VALUE")
 	private Double kwh;
 
+	//Getters n setters
 	public SmartMeter getGeraet() {
 		return geraet;
 	}

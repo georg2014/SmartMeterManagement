@@ -29,13 +29,16 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		//Gets current session or creates one
 		HttpSession session = request.getSession();
 		
+		//sets the attribute user for the user jsp when someone is logged in
 		if(session.getAttribute("sessionUser") != null){
 			request.setAttribute("loggedInUser", session.getAttribute("sessionUser"));
 		}
 		
-		// Display the list of guests:
+		//sets the attribute for the display of all signed in user, for the user jsp
+		//gets all users that are in the database
 		List<User> userList = userDao.getAllUsers();
 		request.setAttribute("userList", userList);
 		request.getRequestDispatcher("/user.jsp").forward(request, response);
@@ -55,7 +58,7 @@ public class UserServlet extends HttpServlet {
 		if (!name.equals(null) && !name.isEmpty() && name.chars().allMatch(c -> Character.isLetter(c))) {
 			
 			//if name is not null and not empty and matches characters(all inputs are letters)
-			session.setAttribute("isWrongName", "0");//no alter
+			session.setAttribute("isWrongName", "0");
 			boolean userIsNew = true;
 			
 			//go through all users that exists in the database
@@ -80,7 +83,8 @@ public class UserServlet extends HttpServlet {
 				session.setAttribute("sessionUser", userDao.getUserByName(name));
 			}
 		}else{
-			session.setAttribute("isWrongName", "1");//alter wrong input
+			//sets alert attribute for user jsp when input was correct
+			session.setAttribute("isWrongName", "1");
 		}
 		doGet(request, response);
 	}
